@@ -3,38 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOLEFRESH | Revitalize Your Steps</title>
+    <title>SOLEFRESH | To Infinity and Freshness!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00d2ff; /* Fresh Blue */
-            --secondary: #3a7bd5;
-            --accent: #00ff87; /* Mint Green */
-            --dark: #1a1a1a;
-            --light: #f4f4f4;
+            /* Toy Story Palette */
+            --toy-blue: #0066cc; 
+            --toy-yellow: #ffcc00;
+            --toy-red: #e60000;
+            --toy-green: #33cc33;
+            --toy-cream: #f9f5e6;
+            --wood-floor: #d2a679;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Neue', cursive, sans-serif; }
         
         body {
-            background-color: var(--dark);
-            color: var(--light);
+            background-color: var(--toy-cream);
             overflow-x: hidden;
         }
 
-        /* --- SIMULATION STYLES --- */
+        /* --- SIMULATION STYLES (Andy's Room) --- */
         #sim-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: radial-gradient(circle at center, #2a2a2a, #000);
+            /* Andy's Wallpaper & Wood Floor */
+            background: linear-gradient(to bottom, #87CEEB 60%, var(--wood-floor) 60%);
+            /* Add clouds via a repeating radial gradient pattern */
+            background-image: 
+                radial-gradient(circle at 20% 20%, white 10%, transparent 20%),
+                radial-gradient(circle at 80% 40%, white 15%, transparent 30%),
+                linear-gradient(to bottom, #87CEEB 60%, var(--wood-floor) 60%);
+            background-size: 200px 200px, 300px 300px, 100% 100%;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.8s ease-in-out;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition */
+            overflow: hidden;
         }
 
         #canvas-layer {
@@ -43,68 +53,84 @@
             left: 0;
             width: 100%;
             height: 100%;
-            touch-action: none; /* Prevents scrolling while playing */
+            touch-action: none;
+            cursor: crosshair;
         }
 
         .sim-ui {
             position: absolute;
-            bottom: 15%;
+            top: 15%;
             text-align: center;
             pointer-events: none;
             z-index: 10;
+            background: rgba(255,255,255,0.8);
+            padding: 15px 30px;
+            border-radius: 20px;
+            border: 4px solid var(--toy-blue);
+            box-shadow: 5px 5px 0px var(--toy-red);
         }
 
         .sim-ui h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--primary);
+            font-size: 1.8rem;
+            color: var(--toy-red);
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         .sim-ui p {
-            color: #aaa;
-            font-size: 0.9rem;
+            color: var(--toy-blue);
+            font-size: 1.1rem;
+            font-weight: bold;
         }
 
-        .shoe-icon {
-            font-size: 100px;
+        /* The target shoe in the middle */
+        .toy-shoe {
+            font-size: 120px;
             position: absolute;
-            top: 50%;
+            top: 65%; /* Positioned on the wooden floor part */
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
-            filter: grayscale(100%);
-            transition: filter 0.5s;
+            filter: sepia(1) hue-rotate(50deg) saturate(3); /* Make it look a bit sickly green initially */
+            transition: all 0.5s;
         }
 
         /* --- LANDING PAGE STYLES --- */
         #main-content {
             display: none; /* Hidden until sim is done */
-            background: var(--light);
+            background: var(--toy-cream);
             color: #333;
             min-height: 100vh;
-            animation: fadeIn 1s ease forwards;
+            border-top: 10px solid var(--toy-yellow);
         }
 
         header {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: var(--toy-blue);
             color: white;
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,210,255,0.3);
+            border-bottom: 5px dashed white;
+            position: relative;
+            overflow: hidden;
         }
+        
+        /* Decorative cloud shapes in header */
+        header::before, header::after {
+            content: ''; position: absolute; background: white; border-radius: 50%;
+        }
+        header::before { width: 100px; height: 100px; bottom: -50px; left: 10%; }
+        header::after { width: 150px; height: 150px; bottom: -70px; right: 15%; }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: -1px;
+            color: var(--toy-yellow);
+            text-shadow: 3px 3px 0px var(--toy-red);
             margin-bottom: 10px;
+            position: relative; z-index: 2;
         }
 
-        header p { font-size: 1.2rem; opacity: 0.9; }
+        header p { font-size: 1.4rem; position: relative; z-index: 2; font-weight: bold;}
 
         .container {
             max-width: 800px;
@@ -112,103 +138,118 @@
             padding: 40px 20px;
         }
 
+        .intro-box {
+            text-align: center; 
+            margin-bottom: 40px; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px;
+            border: 3px solid var(--toy-blue);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+
         .feature-card {
             background: white;
             padding: 25px;
             margin-bottom: 20px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--toy-green);
             display: flex;
             align-items: center;
             gap: 20px;
+            transition: transform 0.2s;
         }
+        .feature-card:hover { transform: scale(1.02); }
 
         .feature-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            background: #eefbff;
-            width: 60px;
-            height: 60px;
+            font-size: 2.5rem;
+            color: white;
+            background: var(--toy-green);
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 3px solid var(--toy-yellow);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
         }
+
+        .feature-card h3 { color: var(--toy-blue); font-size: 1.3rem; margin-bottom: 5px;}
 
         .cta-btn {
             display: block;
             width: 100%;
-            background: var(--dark);
-            color: white;
-            padding: 18px;
+            background: var(--toy-red);
+            color: var(--toy-yellow);
+            padding: 20px;
             text-align: center;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 15px;
+            font-size: 1.5rem;
             margin-top: 30px;
-            transition: transform 0.2s;
+            border: 4px solid var(--toy-yellow);
+            box-shadow: 0 8px 0 #990000;
+            transition: all 0.2s;
+            text-transform: uppercase;
         }
 
-        .cta-btn:active { transform: scale(0.98); }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes sparkle { 0% { transform: scale(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        .cta-btn:active { transform: translateY(4px); box-shadow: 0 4px 0 #990000; }
 
     </style>
 </head>
 <body>
 
     <div id="sim-container">
-        <div class="shoe-icon" id="shoe">👟</div>
-        <canvas id="canvas-layer"></canvas>
-        
         <div class="sim-ui" id="sim-ui">
-            <h2>Deodorize the Shoe!</h2>
-            <p>Tap & Drag to eliminate the odor</p>
+            <h2>Space Ranger Mission!</h2>
+            <p>Zap the Stinky Blobs!</p>
         </div>
+        <div class="toy-shoe" id="shoe">👟</div>
+        <canvas id="canvas-layer"></canvas>
     </div>
 
     <div id="main-content">
         <header>
             <h1>SOLEFRESH</h1>
-            <p>The Ultimate Shoe Deodorizer</p>
+            <p>To Infinity and Freshness!</p>
         </header>
 
         <div class="container">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h2>Refresh Your Steps</h2>
-                <p style="color: #666; margin-top: 10px;">You've cleared the air virtually—now do it for real. SOLEFRESH uses activated bamboo charcoal to neutralize odors at the source.</p>
+            <div class="intro-box">
+                <h2 style="color: var(--toy-red); font-size: 2rem;">Mission Accomplished!</h2>
+                <p style="color: #555; margin-top: 15px; font-size: 1.1rem;">You saved the sneaker from the funk! Just like in the simulation, SOLEFRESH uses powerful, natural charcoal to zap odors in real life. It's the ultimate tool for your gear.</p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">🌿</div>
+                <div class="feature-icon">🎋</div>
                 <div>
-                    <h3>100% Natural</h3>
-                    <p>Made with chemical-free bamboo charcoal.</p>
+                    <h3>Powered by Nature</h3>
+                    <p>100% Activated Bamboo Charcoal. No secret evil chemicals here!</p>
                 </div>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon">🚀</div>
                 <div>
-                    <h3>Fast Acting</h3>
-                    <p>Absorbs moisture and odor in hours.</p>
+                    <h3>Hyper-Speed Drying</h3>
+                    <p>Absorbs sweat and funk faster than a speeding rocket!</p>
                 </div>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">♻️</div>
+                <div class="feature-icon">☀️</div>
                 <div>
-                    <h3>Reusable</h3>
-                    <p>Place in sunlight to recharge for up to a year.</p>
+                    <h3>Rechargeable Power</h3>
+                    <p>Leave it in the sun to recharge. It lasts for eons (okay, a whole year)!</p>
                 </div>
             </div>
 
-            <a href="#" class="cta-btn">Get Yours Now - ₹X99</a>
+            <a href="#" class="cta-btn">GET YOURS - ₹X99</a>
             
-            <p style="text-align: center; margin-top: 30px; color: #999; font-size: 0.8rem;">
-                &copy; 2025 SOLEFRESH. Designed by Anshu Singh.
+            <p style="text-align: center; margin-top: 30px; color: var(--toy-blue); font-weight: bold;">
+                 Designed for Anshu Singh's SOLEFRESH. 2025.
             </p>
         </div>
     </div>
@@ -220,41 +261,48 @@
         const simContainer = document.getElementById('sim-container');
         const mainContent = document.getElementById('main-content');
         const shoe = document.getElementById('shoe');
-        const uiText = document.getElementById('sim-ui');
+        const uiText = document.querySelector('#sim-ui h2');
+        const uiSubText = document.querySelector('#sim-ui p');
 
         let width, height;
-        let particles = [];
-        let freshnessScore = 0;
-        const targetScore = 100; // How many particles to kill to win
+        let blobs = [];
         let gameWon = false;
+        let shoeYPos = 0;
 
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
+            // Calculate roughly where the shoe is vertically on the floor
+            shoeYPos = height * 0.65; 
         }
         window.addEventListener('resize', resize);
         resize();
 
-        // Particle Class (The "Odor")
-        class Particle {
+        // The "Stinky Blob" Alien Class
+        class Blob {
             constructor() {
-                this.x = width / 2 + (Math.random() - 0.5) * 200;
-                this.y = height / 2 + (Math.random() - 0.5) * 200;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.size = Math.random() * 5 + 2;
-                this.color = `rgba(0, 255, ${Math.random() * 100 + 50}, 0.6)`; // Greenish
+                // Spawn blobs around the shoe area
+                this.x = width / 2 + (Math.random() - 0.5) * 300;
+                this.y = shoeYPos + (Math.random() - 0.5) * 150;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.radius = Math.random() * 15 + 10;
+                // Alien green colors
+                this.color = `hsl(${Math.random() * 30 + 90}, 100%, 50%)`; 
                 this.active = true;
+                this.wobble = Math.random() * Math.PI * 2;
             }
 
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
+                // Gentle hovering movement
+                this.x += this.vx + Math.sin(this.wobble) * 0.5;
+                this.y += this.vy + Math.cos(this.wobble) * 0.5;
+                this.wobble += 0.1;
 
-                // Keep near center
+                // Keep them somewhat near the shoe
                 const dx = this.x - width / 2;
-                const dy = this.y - height / 2;
-                if (Math.sqrt(dx*dx + dy*dy) > 150) {
+                const dy = this.y - shoeYPos;
+                if (Math.sqrt(dx*dx + dy*dy) > 250) {
                     this.vx *= -1;
                     this.vy *= -1;
                 }
@@ -263,89 +311,98 @@
             draw() {
                 if (!this.active) return;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                // Draw a gloopy circle
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fillStyle = this.color;
+                // Add a glow effect
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Draw little alien eyes
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x - this.radius/3, this.y - this.radius/3, this.radius/4, 0, Math.PI*2);
+                ctx.arc(this.x + this.radius/3, this.y - this.radius/3, this.radius/4, 0, Math.PI*2);
                 ctx.fill();
             }
         }
 
-        // Initialize Odor
-        for (let i = 0; i < 80; i++) {
-            particles.push(new Particle());
+        // Initialize Blobs
+        for (let i = 0; i < 50; i++) {
+            blobs.push(new Blob());
         }
 
         function animate() {
             if (gameWon) return;
             ctx.clearRect(0, 0, width, height);
             
-            particles.forEach(p => {
+            blobs.forEach(p => {
                 p.update();
                 p.draw();
             });
-
             requestAnimationFrame(animate);
         }
         animate();
 
-        // Interaction (The "Spray")
-        function spray(x, y) {
+        // Interaction (The "Laser Zap")
+        function zap(x, y) {
             if (gameWon) return;
 
-            // Draw spray effect
-            ctx.fillStyle = 'rgba(0, 210, 255, 0.5)';
+            // Draw Laser effect (Space Ranger Style!)
             ctx.beginPath();
-            ctx.arc(x, y, 30, 0, Math.PI * 2);
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = 'yellow';
             ctx.fill();
 
-            // Check collision with odor particles
-            let particlesActive = false;
-            particles.forEach(p => {
+            // Check collision with blobs
+            blobs.forEach(p => {
                 if (!p.active) return;
-                
                 const dx = p.x - x;
                 const dy = p.y - y;
                 const dist = Math.sqrt(dx*dx + dy*dy);
 
-                if (dist < 40) {
-                    p.active = false; // Kill particle
-                    freshnessScore++;
-                } else {
-                    particlesActive = true;
+                if (dist < p.radius + 20) {
+                    p.active = false; // Blob destroyed
                 }
             });
 
-            // Update UI or Win
-            if (freshnessScore > 50) {
-                 shoe.style.filter = "grayscale(0%)"; // Shoe gets colorful
-            }
-
-            // Win Condition
-            const activeCount = particles.filter(p => p.active).length;
-            if (activeCount < 5) {
+            // Win Condition check
+            const activeCount = blobs.filter(p => p.active).length;
+            if (activeCount === 0) {
                 winGame();
             }
         }
 
         function winGame() {
             gameWon = true;
-            uiText.innerHTML = "<h2>FRESH!</h2>";
+            ctx.clearRect(0, 0, width, height); // Clear canvas
+            uiText.innerText = "THE SHOE IS SAVED!";
+            uiSubText.innerText = "Opening Toy Box...";
             
-            // Visual Flare
-            shoe.style.filter = "grayscale(0%) drop-shadow(0 0 20px cyan)";
-            shoe.style.transform = "translate(-50%, -50%) scale(1.5)";
+            // Visual Flare - Make shoe look normal and sparkle
+            shoe.style.filter = "sepia(0) hue-rotate(0deg) saturate(1) drop-shadow(0 0 30px gold)";
+            shoe.style.transform = "translate(-50%, -50%) scale(1.3) rotate(-10deg)";
 
             setTimeout(() => {
-                // Slide up simulation
-                simContainer.style.transform = "translateY(-100%)";
+                // Slide up simulation magically
+                simContainer.style.transform = "translateY(-100%) rotate(5deg)";
                 // Show content
                 mainContent.style.display = "block";
-                document.body.style.background = "#f4f4f4"; // Reset body bg
-            }, 1500);
+            }, 2000);
         }
 
-        // Mouse & Touch Listeners
-        ['mousemove', 'touchmove'].forEach(evt => {
-            window.addEventListener(evt, (e) => {
+        // Mouse & Touch Listeners for the "Laser"
+        ['mousemove', 'touchmove', 'touchstart', 'mousedown'].forEach(evt => {
+            canvas.addEventListener(evt, (e) => {
+                e.preventDefault(); // Stop scrolling on touch
                 let x, y;
                 if(e.touches) {
                     x = e.touches[0].clientX;
@@ -354,10 +411,10 @@
                     x = e.clientX;
                     y = e.clientY;
                 }
-                spray(x, y);
+                zap(x, y);
             });
         });
 
     </script>
 </body>
-  </html>
+</html>
