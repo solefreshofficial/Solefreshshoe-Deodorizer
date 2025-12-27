@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLEFRESH | Revitalize Your Steps</title>
+    <style>
+        :root {
+            --primary: #00d2ff; /* Fresh Blue */
+            --secondary: #3a7bd5;
+            --accent: #00ff87; /* Mint Green */
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- SIMULATION STYLES --- */
+        #sim-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at center, #2a2a2a, #000);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        #canvas-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            touch-action: none; /* Prevents scrolling while playing */
+        }
+
+        .sim-ui {
+            position: absolute;
+            bottom: 15%;
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .sim-ui h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sim-ui p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .shoe-icon {
+            font-size: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            filter: grayscale(100%);
+            transition: filter 0.5s;
+        }
+
+        /* --- LANDING PAGE STYLES --- */
+        #main-content {
+            display: none; /* Hidden until sim is done */
+            background: var(--light);
+            color: #333;
+            min-height: 100vh;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,210,255,0.3);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        header p { font-size: 1.2rem; opacity: 0.9; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            background: #eefbff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            background: var(--dark);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            margin-top: 30px;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:active { transform: scale(0.98); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes sparkle { 0% { transform: scale(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+    </style>
+</head>
+<body>
+
+    <div id="sim-container">
+        <div class="shoe-icon" id="shoe">👟</div>
+        <canvas id="canvas-layer"></canvas>
+        
+        <div class="sim-ui" id="sim-ui">
+            <h2>Deodorize the Shoe!</h2>
+            <p>Tap & Drag to eliminate the odor</p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1>SOLEFRESH</h1>
+            <p>The Ultimate Shoe Deodorizer</p>
+        </header>
+
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2>Refresh Your Steps</h2>
+                <p style="color: #666; margin-top: 10px;">You've cleared the air virtually—now do it for real. SOLEFRESH uses activated bamboo charcoal to neutralize odors at the source.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <div>
+                    <h3>100% Natural</h3>
+                    <p>Made with chemical-free bamboo charcoal.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div>
+                    <h3>Fast Acting</h3>
+                    <p>Absorbs moisture and odor in hours.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">♻️</div>
+                <div>
+                    <h3>Reusable</h3>
+                    <p>Place in sunlight to recharge for up to a year.</p>
+                </div>
+            </div>
+
+            <a href="#" class="cta-btn">Get Yours Now - ₹X99</a>
+            
+            <p style="text-align: center; margin-top: 30px; color: #999; font-size: 0.8rem;">
+                &copy; 2025 SOLEFRESH. Designed by Anshu Singh.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // --- SIMULATION LOGIC ---
+        const canvas = document.getElementById('canvas-layer');
+        const ctx = canvas.getContext('2d');
+        const simContainer = document.getElementById('sim-container');
+        const mainContent = document.getElementById('main-content');
+        const shoe = document.getElementById('shoe');
+        const uiText = document.getElementById('sim-ui');
+
+        let width, height;
+        let particles = [];
+        let freshnessScore = 0;
+        const targetScore = 100; // How many particles to kill to win
+        let gameWon = false;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Particle Class (The "Odor")
+        class Particle {
+            constructor() {
+                this.x = width / 2 + (Math.random() - 0.5) * 200;
+                this.y = height / 2 + (Math.random() - 0.5) * 200;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.size = Math.random() * 5 + 2;
+                this.color = `rgba(0, 255, ${Math.random() * 100 + 50}, 0.6)`; // Greenish
+                this.active = true;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Keep near center
+                const dx = this.x - width / 2;
+                const dy = this.y - height / 2;
+                if (Math.sqrt(dx*dx + dy*dy) > 150) {
+                    this.vx *= -1;
+                    this.vy *= -1;
+                }
+            }
+
+            draw() {
+                if (!this.active) return;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        // Initialize Odor
+        for (let i = 0; i < 80; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            if (gameWon) return;
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Interaction (The "Spray")
+        function spray(x, y) {
+            if (gameWon) return;
+
+            // Draw spray effect
+            ctx.fillStyle = 'rgba(0, 210, 255, 0.5)';
+            ctx.beginPath();
+            ctx.arc(x, y, 30, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Check collision with odor particles
+            let particlesActive = false;
+            particles.forEach(p => {
+                if (!p.active) return;
+                
+                const dx = p.x - x;
+                const dy = p.y - y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+
+                if (dist < 40) {
+                    p.active = false; // Kill particle
+                    freshnessScore++;
+                } else {
+                    particlesActive = true;
+                }
+            });
+
+            // Update UI or Win
+            if (freshnessScore > 50) {
+                 shoe.style.filter = "grayscale(0%)"; // Shoe gets colorful
+            }
+
+            // Win Condition
+            const activeCount = particles.filter(p => p.active).length;
+            if (activeCount < 5) {
+                winGame();
+            }
+        }
+
+        function winGame() {
+            gameWon = true;
+            uiText.innerHTML = "<h2>FRESH!</h2>";
+            
+            // Visual Flare
+            shoe.style.filter = "grayscale(0%) drop-shadow(0 0 20px cyan)";
+            shoe.style.transform = "translate(-50%, -50%) scale(1.5)";
+
+            setTimeout(() => {
+                // Slide up simulation
+                simContainer.style.transform = "translateY(-100%)";
+                // Show content
+                mainContent.style.display = "block";
+                document.body.style.background = "#f4f4f4"; // Reset body bg
+            }, 1500);
+        }
+
+        // Mouse & Touch Listeners
+        ['mousemove', 'touchmove'].forEach(evt => {
+            window.addEventListener(evt, (e) => {
+                let x, y;
+                if(e.touches) {
+                    x = e.touches[0].clientX;
+                    y = e.touches[0].clientY;
+                } else {
+                    x = e.clientX;
+                    y = e.clientY;
+                }
+                spray(x, y);
+            });
+        });
+
+    </script>
+</body>
+  </html>
