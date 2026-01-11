@@ -273,14 +273,7 @@ const Hero = () => {
             source — <span className="text-primary font-medium">moisture</span>.
           </motion.p>
 
-          {/* Compact product snippet */}
-          <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <div className="text-xs text-muted-foreground">2 × 40–50g sachets • ₹199</div>
-            <div className="flex gap-2">
-              <Link to="/shop" className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold">Buy</Link>
-              <a href="#details" onClick={(e) => handleAnchor(e, 'details')} className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors">Learn</a>
-            </div>
-          </div>
+
         </motion.div>
 
         {/* Feature badges - always visible with details on mobile */}
