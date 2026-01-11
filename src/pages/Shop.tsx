@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ExternalLink, ShoppingBag, Star, Shield, Truck, ArrowRight } from "lucide-react";
+import { ExternalLink, ShoppingBag, Sparkles, Shield, Truck, ArrowRight } from "lucide-react";
 import logo from "@/assets/solefresh-logo.png";
 
 const platforms = [
@@ -140,7 +140,7 @@ const Shop = () => {
           {[
             { icon: Shield, text: "100% Authentic" },
             { icon: Truck, text: "Fast Delivery" },
-            { icon: Star, text: "Top Rated" },
+            { icon: Sparkles, text: "Quality Assured" },
           ].map((badge, index) => (
             <div
               key={index}
