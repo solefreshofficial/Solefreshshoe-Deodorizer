@@ -6,6 +6,7 @@ import Ingredients from "@/components/Ingredients";
 import ProductDetails from "@/components/ProductDetails";
 import UseCases from "@/components/UseCases";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 
 const Index = () => {
   return (
@@ -14,16 +15,26 @@ const Index = () => {
       <main>
         <Hero />
         <section id="science">
-          <Science />
+          <Reveal>
+            <Science />
+          </Reveal>
         </section>
-        <HowToUse />
+        <Reveal>
+          <HowToUse />
+        </Reveal>
         <section id="ingredients">
-          <Ingredients />
+          <Reveal>
+            <Ingredients />
+          </Reveal>
         </section>
         <section id="details">
-          <ProductDetails />
+          <Reveal>
+            <ProductDetails />
+          </Reveal>
         </section>
-        <UseCases />
+        <Reveal>
+          <UseCases />
+        </Reveal>
       </main>
       <Footer />
     </div>

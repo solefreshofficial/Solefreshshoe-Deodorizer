@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import productHero from "@/assets/product-hero.jpg";
 import logo from "@/assets/solefresh-logo.png";
 import { useTouchDevice } from "@/hooks/use-touch-device";
+import { scrollToIdWithOffset } from "@/lib/utils";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -19,14 +20,7 @@ const Hero = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const scrollToId = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      return true;
-    }
-    return false;
-  };
+  const scrollToId = (id: string) => scrollToIdWithOffset(id, 12);
 
   const handleAnchor = (e: any, id: string) => {
     e.preventDefault();
@@ -211,7 +205,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6 md:mb-8 relative inline-block"
+          className="mb-6 md:mb-8 relative inline-block flex items-center justify-center"
         >
           {/* Glow backdrop */}
           <div className="absolute inset-[-20%] blur-3xl bg-primary/15 rounded-full animate-pulse-slow" />

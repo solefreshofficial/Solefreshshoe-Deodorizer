@@ -12,14 +12,6 @@ const platforms = [
     icon: "🛍️",
     features: ["Cash on Delivery", "Easy Returns", "Best Prices"],
   },
-  {
-    name: "Amazon",
-    description: "Fast Prime delivery",
-    url: "https://www.amazon.in/",
-    color: "from-orange-500 to-amber-600",
-    icon: "📦",
-    features: ["Prime Delivery", "Trusted Platform", "Easy Returns"],
-  },
 ];
 
 const Shop = () => {

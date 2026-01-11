@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { scrollToIdWithOffset } from "@/lib/utils";
 import logo from "@/assets/solefresh-logo.png";
 
 const navLinks = [
@@ -18,14 +19,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const scrollToId = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      return true;
-    }
-    return false;
-  };
+  const scrollToId = (id: string) => scrollToIdWithOffset(id, 12);
 
   const handleAnchor = (e: any, id: string) => {
     e.preventDefault();
