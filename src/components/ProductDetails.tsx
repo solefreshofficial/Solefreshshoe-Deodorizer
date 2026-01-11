@@ -20,7 +20,6 @@ const ProductDetails = () => {
   const imageRotate = useTransform(scrollYProgress, [0, 1], [3, -3]);
 
   const details = [
-    { icon: Package, label: "Quantity", value: "2 × 40-50g Sachets", color: "from-blue-500/20 to-blue-600/20" },
     { icon: Calendar, label: "Shelf Life", value: "2-3 Months", color: "from-purple-500/20 to-purple-600/20" },
     { icon: MapPin, label: "Made in", value: "India 🇮🇳", color: "from-orange-500/20 to-orange-600/20" },
   ];
@@ -94,29 +93,7 @@ const ProductDetails = () => {
               <span className="text-gradient">Quality</span>
             </h2>
 
-            {/* Price display */}
-            <motion.div
-              className="mb-8 md:mb-10"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
-            >
-              <div className="inline-flex items-baseline gap-3 md:gap-4 px-5 md:px-8 py-4 md:py-5 rounded-xl md:rounded-2xl bg-card/50 border border-primary/20 relative overflow-hidden group hover:border-primary/40 transition-colors duration-300">
-                {/* Shine effect - desktop only */}
-                {!isTouchDevice && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                )}
-                
-                <span className="text-4xl md:text-5xl lg:text-7xl font-black text-gradient relative z-10">
-                  ₹199
-                </span>
-                <div className="relative z-10">
-                  <span className="block text-muted-foreground text-xs md:text-sm">
-                    inclusive of all taxes
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+            {/* Price removed for cleaner hero — price available on shop page */}
 
             {/* Detail cards */}
             <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">

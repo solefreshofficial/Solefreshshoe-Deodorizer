@@ -53,7 +53,7 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-start justify-center overflow-hidden pt-8 md:pt-12 lg:pt-16"
     >
       {/* Interactive cursor glow - desktop only */}
       {!isTouchDevice && (
@@ -185,14 +185,14 @@ const Hero = () => {
 
       <motion.div
         style={{ y: isTouchDevice ? 0 : y, scale: isTouchDevice ? 1 : scale, rotateX: isTouchDevice ? 0 : tilt }}
-        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-12 text-center will-change-transform"
+        className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-28 text-center will-change-transform"
       >
         {/* Premium Logo - slightly smaller and centered */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6 md:mb-8 relative inline-block flex items-center justify-center mx-auto"
+          className="mt-12 md:mt-16 mb-10 md:mb-14 relative inline-block flex items-center justify-center mx-auto"
         >
           {/* Glow backdrop */}
           <div className="absolute inset-[-15%] blur-3xl bg-primary/12 rounded-full animate-pulse-slow" />
@@ -249,7 +249,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
-          className="mb-4 md:mb-6 text-center"
+          className="mb-10 md:mb-14 text-center space-y-6 px-4 sm:px-6"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-primary/20 mb-4 md:mb-6 backdrop-blur-sm mx-auto">
             <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary" />
@@ -281,7 +281,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-6 md:mb-10"
+          className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8 md:mb-12"
         >
           {[
             { icon: Zap, text: "Instant Results" },
