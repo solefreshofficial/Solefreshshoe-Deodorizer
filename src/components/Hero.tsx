@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Sparkles, Star, Zap, Shield } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import productHero from "@/assets/product-hero.jpg";
 import logo from "@/assets/solefresh-logo.png";
 import { useTouchDevice } from "@/hooks/use-touch-device";
@@ -15,6 +15,29 @@ const Hero = () => {
     target: containerRef,
     offset: ["start start", "end start"],
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false;
+  };
+
+  const handleAnchor = (e: any, id: string) => {
+    e.preventDefault();
+    const isHome = !location.hash || location.hash === "#" || location.hash === "#/" || location.pathname === "/";
+    if (isHome) {
+      scrollToId(id);
+    } else {
+      navigate("/");
+      setTimeout(() => scrollToId(id), 150);
+    }
+  };
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -206,7 +229,7 @@ const Hero = () => {
             <img
               src={logo}
               alt="SoleFresh"
-              className="h-24 sm:h-32 md:h-40 lg:h-52 xl:h-60 w-auto mx-auto relative z-10 drop-shadow-2xl"
+              className="h-20 sm:h-28 md:h-36 lg:h-44 xl:h-48 w-auto mx-auto relative z-10 drop-shadow-2xl"
             />
             
             {/* Animated highlight sweep */}
@@ -316,6 +339,7 @@ const Hero = () => {
           </Link>
           <a
             href="#science"
+            onClick={(e) => handleAnchor(e, 'science')}
             className="px-6 md:px-8 py-3 md:py-4 border border-border text-foreground font-semibold rounded-full hover:border-primary/50 hover:bg-card/50 transition-all duration-300 active:scale-95"
           >
             Learn More
@@ -421,6 +445,7 @@ const Hero = () => {
         >
           <a
             href="#science"
+            onClick={(e) => handleAnchor(e, 'science')}
             className="inline-flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
           >
             <span className="text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium">
