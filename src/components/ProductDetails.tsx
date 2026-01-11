@@ -1,7 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { Package, Calendar, MapPin, ArrowRight, Sparkles, Shield, Star } from "lucide-react";
+import { Package, Calendar, MapPin, ArrowRight, Sparkles, Shield, Instagram } from "lucide-react";
 import productPack from "@/assets/product-pack.jpg";
 import { useTouchDevice } from "@/hooks/use-touch-device";
 
@@ -173,6 +173,29 @@ const ProductDetails = () => {
               ))}
             </div>
 
+            {/* Product overview and policies */}
+            <div className="grid md:grid-cols-2 gap-6 mb-8 md:mb-10">
+              <div className="glass-card rounded-2xl p-6">
+                <h3 className="text-lg font-semibold mb-2">Product Overview</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  SOLEFRESH is a natural, reusable shoe deodorizer that removes moisture to prevent odor rather than merely masking it. Place the pouch in your shoes after use and let it work overnight. Safe, chemical-free, and suitable for humid climates.
+                </p>
+                <ul className="mt-3 text-sm text-muted-foreground list-disc pl-5 space-y-1">
+                  <li>No chemicals or sprays</li>
+                  <li>Reusable and eco-friendly</li>
+                  <li>Works by moisture absorption</li>
+                  <li>Can be refreshed by drying in sunlight</li>
+                </ul>
+              </div>
+
+              <div className="glass-card rounded-2xl p-6">
+                <h3 className="text-lg font-semibold mb-2">Shipping & Returns</h3>
+                <p className="text-sm text-muted-foreground mb-2">Shipping available across India. Dispatch within 24–48 hours. Estimated delivery: 3–7 business days.</p>
+                <p className="text-sm text-muted-foreground mb-2">Returns accepted within 7 days of delivery. Product must be unused and in original packaging. Used items are not eligible for return.</p>
+                <p className="text-sm text-muted-foreground">Refunds processed within 5–7 business days after inspection.</p>
+              </div>
+            </div>
+
             {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -194,6 +217,13 @@ const ProductDetails = () => {
               <div className="flex items-center justify-center sm:justify-start gap-2 px-4">
                 <Shield className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
                 <span className="text-xs md:text-sm text-muted-foreground">Secure Checkout</span>
+              </div>
+
+              <div className="flex items-center gap-3 mt-3 md:mt-0">
+                <a href="https://www.instagram.com/solefreshofficial?igsh=MTZmemNwM3Z5Y28wcA==" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-border text-sm text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+                  <Instagram className="w-4 h-4" />
+                  Follow on Instagram
+                </a>
               </div>
             </motion.div>
           </motion.div>
@@ -244,16 +274,6 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              {/* Floating badges */}
-              <motion.div
-                className="absolute -top-3 -right-3 md:-top-6 md:-right-6 bg-primary text-primary-foreground px-3 md:px-5 py-1.5 md:py-2.5 rounded-full font-bold text-xs md:text-sm shadow-lg flex items-center gap-1.5 md:gap-2"
-                animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Star className="w-3 h-3 md:w-4 md:h-4 fill-current" />
-                Best Seller
-              </motion.div>
-              
               <motion.div
                 className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-card border border-border px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm shadow-lg flex items-center gap-1.5 md:gap-2"
                 animate={{ y: [3, -3, 3] }}
@@ -261,21 +281,6 @@ const ProductDetails = () => {
               >
                 <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-green-500 animate-pulse" />
                 In Stock
-              </motion.div>
-
-              {/* Rating badge */}
-              <motion.div
-                className="absolute top-1/2 -left-4 md:-left-8 bg-card/90 backdrop-blur-sm border border-border/50 px-3 md:px-4 py-2 md:py-3 rounded-xl md:rounded-2xl shadow-lg hidden sm:block"
-                initial={{ opacity: 0, x: -15 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.6 }}
-              >
-                <div className="flex items-center gap-0.5 md:gap-1 mb-0.5 md:mb-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-2.5 h-2.5 md:w-3 md:h-3 text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <span className="text-[10px] md:text-xs text-muted-foreground">5.0 Rating</span>
               </motion.div>
             </motion.div>
           </motion.div>

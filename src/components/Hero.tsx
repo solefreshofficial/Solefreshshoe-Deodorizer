@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Sparkles, Star, Zap, Shield } from "lucide-react";
+import { ArrowDown, Sparkles, Zap, Shield } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import productHero from "@/assets/product-hero.jpg";
@@ -187,28 +187,15 @@ const Hero = () => {
         style={{ y: isTouchDevice ? 0 : y, scale: isTouchDevice ? 1 : scale, rotateX: isTouchDevice ? 0 : tilt }}
         className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-12 text-center will-change-transform"
       >
-        {/* Brand tag (kept, non-overlapping) */}
+        {/* Premium Logo - slightly smaller and centered */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/80 border border-primary/20 mb-8 md:mb-10 backdrop-blur-sm"
-        >
-          <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary animate-pulse" />
-          <span className="text-xs md:text-sm font-medium tracking-wide text-primary">
-            Your best shoe care option
-          </span>
-        </motion.div>
-
-        {/* Premium Logo - LARGER on desktop, centered */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6 md:mb-8 relative inline-block flex items-center justify-center"
+          className="mb-6 md:mb-8 relative inline-block flex items-center justify-center mx-auto"
         >
           {/* Glow backdrop */}
-          <div className="absolute inset-[-20%] blur-3xl bg-primary/15 rounded-full animate-pulse-slow" />
+          <div className="absolute inset-[-15%] blur-3xl bg-primary/12 rounded-full animate-pulse-slow" />
           
           {/* Logo with 3D effect - desktop only parallax */}
           <motion.div
@@ -217,13 +204,13 @@ const Hero = () => {
               transformStyle: "preserve-3d",
               transform: isTouchDevice 
                 ? "perspective(1000px)" 
-                : `perspective(1000px) rotateY(${mousePos.x * 0.08}deg) rotateX(${mousePos.y * -0.08}deg)`,
+                : `perspective(1000px) rotateY(${mousePos.x * 0.06}deg) rotateX(${mousePos.y * -0.06}deg)`,
             }}
           >
             <img
               src={logo}
               alt="SoleFresh"
-              className="h-24 sm:h-32 md:h-40 lg:h-52 xl:h-60 w-auto mx-auto relative z-10 drop-shadow-2xl"
+              className="h-16 sm:h-20 md:h-28 lg:h-32 xl:h-36 w-auto mx-auto relative z-10 drop-shadow-2xl"
             />
             
             {/* Animated highlight sweep */}
@@ -241,20 +228,59 @@ const Hero = () => {
             />
           </motion.div>
 
-          {/* Orbiting stars - simplified for mobile */}
+          {/* Decorative sparkle - replaces orbiting star to avoid rating implication */}
           <motion.div
             className="absolute -top-2 -right-2 md:-top-4 md:-right-4"
             animate={{
               rotate: 360,
             }}
             transition={{
-              duration: 10,
+              duration: 12,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            <Star className="w-4 h-4 md:w-6 md:h-6 text-primary fill-primary/30" />
+            <Sparkles className="w-4 h-4 md:w-6 md:h-6 text-primary/80" />
           </motion.div>
+        </motion.div>
+
+        {/* Tagline & product snippet placed to avoid collision */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
+          className="mb-4 md:mb-6 text-center"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-primary/20 mb-4 md:mb-6 backdrop-blur-sm mx-auto">
+            <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary" />
+            <span className="text-xs md:text-sm font-medium tracking-wide text-primary">
+              Your best shoe care option
+            </span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <span className="text-foreground">Fresh shoes.</span>{" "}
+            <span className="text-gradient">Every day.</span>
+          </h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 mt-4"
+          >
+            A chemical-free, reusable shoe deodorizer that eliminates odor at its
+            source — <span className="text-primary font-medium">moisture</span>.
+          </motion.p>
+
+          {/* Compact product snippet */}
+          <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="text-xs text-muted-foreground">2 × 40–50g sachets • ₹199 • Free Shipping</div>
+            <div className="flex gap-2">
+              <Link to="/shop" className="text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold">Buy</Link>
+              <a href="#details" onClick={(e) => handleAnchor(e, 'details')} className="text-sm px-4 py-2 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors">Learn</a>
+            </div>
+          </div>
         </motion.div>
 
         {/* Tagline */}
@@ -291,7 +317,7 @@ const Hero = () => {
           {[
             { icon: Zap, text: "Instant Results" },
             { icon: Shield, text: "100% Natural" },
-            { icon: Star, text: "Premium Quality" },
+            { icon: Sparkles, text: "Premium Quality" },
           ].map((badge, index) => (
             <motion.div
               key={badge.text}
