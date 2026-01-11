@@ -275,37 +275,13 @@ const Hero = () => {
 
           {/* Compact product snippet */}
           <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <div className="text-xs text-muted-foreground">2 × 40–50g sachets • ₹199 • Free Shipping</div>
+            <div className="text-xs text-muted-foreground">2 × 40–50g sachets • ₹199</div>
             <div className="flex gap-2">
-              <Link to="/shop" className="text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold">Buy</Link>
-              <a href="#details" onClick={(e) => handleAnchor(e, 'details')} className="text-sm px-4 py-2 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors">Learn</a>
+              <Link to="/shop" className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold">Buy</Link>
+              <a href="#details" onClick={(e) => handleAnchor(e, 'details')} className="w-full sm:w-auto text-center text-sm px-4 py-2 rounded-full border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors">Learn</a>
             </div>
           </div>
         </motion.div>
-
-        {/* Tagline */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-          className="mb-4 md:mb-6"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-            <span className="text-foreground">Fresh shoes.</span>{" "}
-            <span className="text-gradient">Every day.</span>
-          </h2>
-        </motion.div>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-          className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-4"
-        >
-          A chemical-free, reusable shoe deodorizer that eliminates odor at its
-          source — <span className="text-primary font-medium">moisture</span>.
-        </motion.p>
 
         {/* Feature badges - always visible with details on mobile */}
         <motion.div

@@ -56,7 +56,7 @@ const Footer = () => {
               SOLEFRESH creates simple, natural solutions for everyday problems. Our products are designed to work quietly, safely, and effectively — without chemicals or unnecessary complexity.
             </p>
             <div className="text-xs text-muted-foreground">
-              <div>Support: <a className="text-primary hover:underline" href="mailto:solefreshofficial@gmail.com">solefreshofficial@gmail.com</a></div>
+              <div>Support: <a className="text-primary hover:underline" href="mailto:solefreshofficial@gmail.com" onClick={() => (window.location.href = 'mailto:solefreshofficial@gmail.com')}>solefreshofficial@gmail.com</a></div>
               <div>WhatsApp: <a className="text-primary hover:underline" href="tel:+917065579233">+91 70655 79233</a></div>
             </div>
             

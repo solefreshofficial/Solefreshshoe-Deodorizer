@@ -114,9 +114,6 @@ const ProductDetails = () => {
                   <span className="block text-muted-foreground text-xs md:text-sm">
                     inclusive of all taxes
                   </span>
-                  <span className="block text-green-500 text-[10px] md:text-xs font-medium">
-                    Free Shipping
-                  </span>
                 </div>
               </div>
             </motion.div>
@@ -178,21 +175,17 @@ const ProductDetails = () => {
               <div className="glass-card rounded-2xl p-6">
                 <h3 className="text-lg font-semibold mb-2">Product Overview</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  SOLEFRESH is a natural, reusable shoe deodorizer that removes moisture to prevent odor rather than merely masking it. Place the pouch in your shoes after use and let it work overnight. Safe, chemical-free, and suitable for humid climates.
+                  Shoe smell happens because moisture gets trapped inside your shoes — and sprays only hide it for a while.
                 </p>
-                <ul className="mt-3 text-sm text-muted-foreground list-disc pl-5 space-y-1">
-                  <li>No chemicals or sprays</li>
-                  <li>Reusable and eco-friendly</li>
-                  <li>Works by moisture absorption</li>
-                  <li>Can be refreshed by drying in sunlight</li>
-                </ul>
-              </div>
-
-              <div className="glass-card rounded-2xl p-6">
-                <h3 className="text-lg font-semibold mb-2">Shipping & Returns</h3>
-                <p className="text-sm text-muted-foreground mb-2">Shipping available across India. Dispatch within 24–48 hours. Estimated delivery: 3–7 business days.</p>
-                <p className="text-sm text-muted-foreground mb-2">Returns accepted within 7 days of delivery. Product must be unused and in original packaging. Used items are not eligible for return.</p>
-                <p className="text-sm text-muted-foreground">Refunds processed within 5–7 business days after inspection.</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  SOLEFRESH fixes the problem at its source. It absorbs moisture and odor from inside your shoes, keeping them fresh naturally — without sprays, chemicals, or artificial fragrance.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  Just place it inside your shoes after use and let it work overnight. Reusable, easy to maintain, and designed for Indian weather.
+                </p>
+                <p className="text-sm text-muted-foreground font-semibold mt-4">
+                  Fresh shoes. Real confidence. Every day.
+                </p>
               </div>
             </div>
 
