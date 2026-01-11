@@ -312,35 +312,7 @@ const Hero = () => {
           ))}
         </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16 px-4"
-        >
-          <Link
-            to="/shop"
-            className="group relative px-6 md:px-8 py-3 md:py-4 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 active:scale-95"
-          >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              Buy Now
-              <motion.span
-                animate={{ x: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                →
-              </motion.span>
-            </span>
-          </Link>
-          <a
-            href="#science"
-            onClick={(e) => handleAnchor(e, 'science')}
-            className="px-6 md:px-8 py-3 md:py-4 border border-border text-foreground font-semibold rounded-full hover:border-primary/50 hover:bg-card/50 transition-all duration-300 active:scale-95"
-          >
-            Learn More
-          </a>
-        </motion.div>
+
 
         {/* Floating product card (desktop only) */}
         {/* Product image with optimized effects */}
