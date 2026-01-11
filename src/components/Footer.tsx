@@ -1,9 +1,24 @@
 import { motion } from "framer-motion";
 import { Instagram, Mail, Phone, ArrowUpRight, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { scrollToIdWithOffset } from "@/lib/utils";
 import logo from "@/assets/solefresh-logo.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAnchor = (e: any, id: string) => {
+    e.preventDefault();
+    const isHome = location.pathname === "/";
+    if (isHome) {
+      scrollToIdWithOffset(id, 12);
+    } else {
+      navigate("/");
+      setTimeout(() => scrollToIdWithOffset(id, 12), 150);
+    }
+  };
+
   return (
     <footer className="section-padding bg-background border-t border-border relative overflow-hidden">
       {/* Animated gradient background */}
@@ -38,19 +53,25 @@ const Footer = () => {
               <div className="absolute inset-0 blur-2xl bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </Link>
             <p className="text-muted-foreground text-lg mb-6">
-              Fresh shoes. Every day.
+              SOLEFRESH creates simple, natural solutions for everyday problems. Our products are designed to work quietly, safely, and effectively — without chemicals or unnecessary complexity.
             </p>
+            <div className="text-xs text-muted-foreground">
+              <div>Support: <a className="text-primary hover:underline" href="mailto:solefreshofficial@gmail.com">solefreshofficial@gmail.com</a></div>
+              <div>WhatsApp: <a className="text-primary hover:underline" href="tel:+917065579233">+91 70655 79233</a></div>
+            </div>
             
             {/* Social links with enhanced hover */}
             <div className="flex gap-4">
               {[
-                { icon: Instagram, href: "#" },
-                { icon: Mail, href: "mailto:hello@solefresh.in" },
-                { icon: Phone, href: "tel:+919876543210" },
+                { icon: Instagram, href: "https://www.instagram.com/solefreshofficial?igsh=MTZmemNwM3Z5Y28wcA==" },
+                { icon: Mail, href: "mailto:solefreshofficial@gmail.com" },
+                { icon: Phone, href: "tel:+917065579233" },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
+                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="w-12 h-12 rounded-full bg-card/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-card transition-all duration-300 group"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -89,6 +110,7 @@ const Footer = () => {
                   <a
                     key={link.label}
                     href={link.href}
+                    onClick={(e) => handleAnchor(e, link.href.replace('#',''))}
                     className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-all duration-300 group"
                   >
                     {link.label}
