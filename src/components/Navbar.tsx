@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/solefresh-logo.png";
 
 const navLinks = [
@@ -14,6 +14,29 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return true;
+    }
+    return false;
+  };
+
+  const handleAnchor = (e: any, id: string) => {
+    e.preventDefault();
+    const isHome = !location.hash || location.hash === "#" || location.hash === "#/" || location.pathname === "/";
+    if (isHome) {
+      scrollToId(id);
+    } else {
+      navigate("/");
+      setTimeout(() => scrollToId(id), 150);
+    }
+  }; 
 
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -88,6 +111,7 @@ const Navbar = () => {
                 <motion.a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleAnchor(e, link.href.replace('#',''))}
                   initial={{ opacity: 0, y: -15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 * index, ease: "easeOut" }}
@@ -97,7 +121,7 @@ const Navbar = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-primary to-primary/50 transition-all duration-300 group-hover:w-full" />
                   <span className="absolute -bottom-1 left-0 w-0 h-[2px] blur-sm bg-primary/50 transition-all duration-300 group-hover:w-full" />
                 </motion.a>
-              ))}
+              ))} 
             </div>
 
             {/* CTA Button with enhanced effects */}
@@ -151,7 +175,7 @@ const Navbar = () => {
             <motion.a
               key={link.href}
               href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => { setMobileMenuOpen(false); handleAnchor(e, link.href.replace('#','')); }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? 0 : -20 }}
               transition={{ delay: index * 0.1 }}
