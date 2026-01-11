@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Redirect unknown paths to hash route so the SPA can handle routing on GitHub Pages
+      (function () {
+        try {
+          const repo = "/Solefreshshoe-Deodorizer";
+          const path = location.pathname.replace(repo, "");
+          const hash = "#" + (path || "/") + location.search + location.hash;
+          location.replace(repo + "/" + hash);
+        } catch (e) {
+          location.replace("/");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting… If you are not redirected, <a href="/Solefreshshoe-Deodorizer/">go to home</a>.</p>
+  </body>
+</html>
