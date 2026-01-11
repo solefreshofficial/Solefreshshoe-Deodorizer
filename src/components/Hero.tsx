@@ -267,7 +267,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 mt-4"
+            className="text-sm sm:text-base md:text-lg text-muted-foreground opacity-90 max-w-xl mx-auto leading-relaxed px-4 mt-4"
           >
             A chemical-free, reusable shoe deodorizer that eliminates odor at its
             source — <span className="text-primary font-medium">moisture</span>.
@@ -281,7 +281,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12"
+          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-6 md:mb-10"
         >
           {[
             { icon: Zap, text: "Instant Results" },
@@ -313,7 +313,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
-          className="relative mx-auto max-w-sm md:max-w-lg"
+          className="relative mx-auto w-full max-w-md md:max-w-lg px-4 md:px-0"
         >
           {/* Glow - simplified on mobile */}
           <div className="absolute inset-[-10px] md:inset-[-20px] blur-2xl md:blur-3xl bg-primary/10 rounded-full animate-pulse-slow" />
@@ -333,7 +333,7 @@ const Hero = () => {
               <img
                 src={productHero}
                 alt="SoleFresh Shoe Deodorizer Sachets"
-                className="relative w-full h-auto rounded-2xl md:rounded-3xl shadow-2xl"
+                className="relative w-full max-w-[320px] md:max-w-md mx-auto h-auto rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl"
                 loading="eager"
               />
 
@@ -344,19 +344,20 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-2xl md:rounded-3xl border border-primary/15" />
             </div>
 
-            {/* Floating badges - always visible */}
+            {/* Floating badges - always visible (repositioned) */}
             <motion.div
-              className="absolute -top-3 -right-3 md:-top-6 md:-right-6 bg-primary text-primary-foreground px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-xs md:text-sm shadow-lg"
+              className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-6 bg-card border border-border px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs shadow-lg flex items-center gap-1.5 md:gap-2"
               animate={{
-                y: [-3, 3, -3],
+                y: [3, -3, 3],
               }}
               transition={{
-                duration: 4,
+                duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
             >
-              ₹199 Only
+              <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-green-500 animate-pulse" />
+              In Stock
             </motion.div>
             <motion.div
               className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-card border border-border px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs shadow-lg flex items-center gap-1.5 md:gap-2"
@@ -403,7 +404,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
-          className="mt-12 md:mt-20"
+          className="mt-8 md:mt-16"
         >
           <a
             href="#science"

@@ -78,7 +78,7 @@ const ProductDetails = () => {
       <div className="absolute bottom-1/4 right-1/4 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-primary/3 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "2s" }} />
 
       <div ref={ref} className="container-wide relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
           {/* Left - Product info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -198,7 +198,7 @@ const ProductDetails = () => {
             >
               <Link
                 to="/shop"
-                className="inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden relative group transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden relative group transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 active:scale-95"
               >
                 {/* Animated background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-green-400 to-primary bg-[length:200%_100%] animate-gradient" />
@@ -243,9 +243,12 @@ const ProductDetails = () => {
                 <img
                   src={productPack}
                   alt="SoleFresh Product Package"
-                  className="relative w-full max-w-sm md:max-w-md mx-auto rounded-2xl md:rounded-3xl shadow-2xl"
+                  className="relative w-full max-w-[320px] md:max-w-md mx-auto rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl"
                   loading="lazy"
                 />
+
+                {/* Make CTAs responsive */}
+
 
                 {/* Overlay effect */}
                 <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-t from-background/30 via-transparent to-white/5" />
