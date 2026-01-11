@@ -34,8 +34,8 @@ const Hero = () => {
   };
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const tilt = useTransform(scrollYProgress, [0, 1], [0, -3]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.98]);
 
   useEffect(() => {
     if (isTouchDevice) return;
@@ -184,23 +184,21 @@ const Hero = () => {
       />
 
       <motion.div
-        style={{ y: isTouchDevice ? 0 : y, opacity, scale: isTouchDevice ? 1 : scale }}
+        style={{ y: isTouchDevice ? 0 : y, scale: isTouchDevice ? 1 : scale, rotateX: isTouchDevice ? 0 : tilt }}
         className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-8 md:py-12 text-center will-change-transform"
       >
-        {/* Brand tag (positioned to avoid overlap) */}
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/90 border border-primary/20 backdrop-blur-sm"
-          >
-            <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary animate-pulse" />
-            <span className="text-xs md:text-sm font-medium tracking-wide text-primary">
-              Your best shoe care option
-            </span>
-          </motion.div>
-        </div>
+        {/* Brand tag (kept, non-overlapping) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/80 border border-primary/20 mb-8 md:mb-10 backdrop-blur-sm"
+        >
+          <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary animate-pulse" />
+          <span className="text-xs md:text-sm font-medium tracking-wide text-primary">
+            Your best shoe care option
+          </span>
+        </motion.div>
 
         {/* Premium Logo - LARGER on desktop, centered */}
         <motion.div
@@ -225,7 +223,7 @@ const Hero = () => {
             <img
               src={logo}
               alt="SoleFresh"
-              className="h-20 sm:h-28 md:h-36 lg:h-44 xl:h-48 w-auto mx-auto relative z-10 drop-shadow-2xl"
+              className="h-24 sm:h-32 md:h-40 lg:h-52 xl:h-60 w-auto mx-auto relative z-10 drop-shadow-2xl"
             />
             
             {/* Animated highlight sweep */}
@@ -343,24 +341,6 @@ const Hero = () => {
         </motion.div>
 
         {/* Floating product card (desktop only) */}
-        <div className="hidden md:flex fixed top-20 right-8 z-50 items-center">
-          <div className="relative group cursor-pointer">
-            <img
-              src={productHero}
-              alt="SoleFresh product"
-              className="w-36 md:w-44 rounded-2xl shadow-2xl transition-transform duration-400 transform-gpu group-hover:scale-105"
-            />
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-bold shadow-lg">₹199 Only</div>
-            <button
-              aria-label="Whats this"
-              onClick={() => scrollToId('details')}
-              className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-card/90 border border-border px-3 py-1.5 rounded-full text-sm font-semibold"
-            >
-              What's this
-            </button>
-          </div>
-        </div>
-
         {/* Product image with optimized effects */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -386,7 +366,7 @@ const Hero = () => {
               <img
                 src={productHero}
                 alt="SoleFresh Shoe Deodorizer Sachets"
-                className="relative w-full h-auto rounded-2xl md:rounded-3xl shadow-2xl md:hidden"
+                className="relative w-full h-auto rounded-2xl md:rounded-3xl shadow-2xl"
                 loading="eager"
               />
 
