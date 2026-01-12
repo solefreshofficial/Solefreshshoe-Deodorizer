@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ExternalLink, ShoppingBag, Sparkles, Shield, Truck, ArrowRight } from "lucide-react";
 import logo from "@/assets/solefresh-logo.png";
 
@@ -99,20 +100,21 @@ const Shop = () => {
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-20">
         {/* Logo */}
-        <motion.a
-          href="/"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 relative group"
-        >
-          <img
-            src={logo}
-            alt="SoleFresh"
-            className="h-16 md:h-20 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 blur-2xl bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </motion.a>
+        <Link to="/" className="mb-10 relative group">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <img
+              src={logo}
+              alt="SoleFresh"
+              className="h-16 md:h-20 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 blur-2xl bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </motion.div>
+        </Link>
 
         {/* Title */}
         <motion.div
@@ -231,16 +233,17 @@ const Shop = () => {
         </div>
 
         {/* Back link */}
-        <motion.a
-          href="/Solefreshshoe-Deodorizer/"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2"
-        >
-          <ArrowRight className="w-4 h-4 rotate-180" />
-          Back to Home
-        </motion.a>
+        <Link to="/" className="mt-16 text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex items-center gap-2"
+          >
+            <ArrowRight className="w-4 h-4 rotate-180" />
+            Back to Home
+          </motion.div>
+        </Link>
       </div>
     </div>
   );

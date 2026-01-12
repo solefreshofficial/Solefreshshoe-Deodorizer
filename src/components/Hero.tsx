@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import productHero from "@/assets/product-hero.jpg";
 import logo from "@/assets/solefresh-logo.png";
 import { useTouchDevice } from "@/hooks/use-touch-device";
+import { Button } from "@/components/ui/button";
 import { scrollToIdWithOffset } from "@/lib/utils";
 
 const Hero = () => {
@@ -192,7 +193,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 md:mt-16 mb-10 md:mb-14 relative inline-block flex items-center justify-center mx-auto"
+          className="mt-6 md:mt-10 mb-10 md:mb-14 relative inline-block flex items-center justify-center mx-auto"
         >
           {/* Glow backdrop */}
           <div className="absolute inset-[-15%] blur-3xl bg-primary/12 rounded-full animate-pulse-slow" />
@@ -274,6 +275,20 @@ const Hero = () => {
           </motion.p>
 
 
+        </motion.div>
+
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-center gap-4">
+            <Button asChild>
+              <Link to="/shop">Buy now</Link>
+            </Button>
+          </div>
         </motion.div>
 
         {/* Feature badges - always visible with details on mobile */}
