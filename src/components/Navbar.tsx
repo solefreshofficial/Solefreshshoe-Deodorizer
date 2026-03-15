@@ -157,7 +157,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Full-screen Mobile Menu */}
+      {/* Premium Full-screen Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, clipPath: "circle(0% at 90% 5%)" }}
         animate={{
@@ -165,52 +165,60 @@ const Navbar = () => {
           clipPath: mobileMenuOpen ? "circle(150% at 90% 5%)" : "circle(0% at 90% 5%)",
         }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-[60] bg-background md:hidden flex flex-col items-center justify-center pointer-events-none"
-        style={{ pointerEvents: mobileMenuOpen ? "auto" : "none" }}
+        className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-3xl md:hidden flex flex-col items-center justify-center pointer-events-none"
+        style={{ 
+          pointerEvents: mobileMenuOpen ? "auto" : "none",
+          background: "radial-gradient(circle at 90% 5%, #163824 0%, #050D08 100%)"
+        }}
       >
-        <div className="absolute top-5 right-6">
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="p-2 text-primary"
-          >
-            <X className="w-8 h-8" />
-          </button>
+        {/* Animated background patterns for menu */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+          <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[100px]" />
         </div>
 
-        <div className="flex flex-col items-center gap-8 px-6">
+        <div className="flex flex-col items-center gap-10 px-6 relative z-10 w-full">
           {navLinks.map((link, index) => (
             <motion.a
               key={link.href}
               href={link.href}
               onClick={(e) => { setMobileMenuOpen(false); handleAnchor(e, link.href.replace('#','')); }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: mobileMenuOpen ? 1 : 0, y: mobileMenuOpen ? 0 : 20 }}
-              transition={{ 
-                delay: mobileMenuOpen ? 0.2 + index * 0.1 : 0,
-                duration: 0.5 
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              animate={{ 
+                opacity: mobileMenuOpen ? 1 : 0, 
+                scale: mobileMenuOpen ? 1 : 0.8,
+                y: mobileMenuOpen ? 0 : 30 
               }}
-              className="text-3xl font-sans font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
+              transition={{ 
+                delay: mobileMenuOpen ? 0.3 + index * 0.1 : 0,
+                duration: 0.6,
+                ease: [0.34, 1.56, 0.64, 1] 
+              }}
+              className="text-4xl font-sans font-bold tracking-tight text-[#F0EAD6] hover:text-primary transition-colors flex items-center gap-4 group"
             >
+              <span className="text-primary/40 text-sm font-mono tracking-widest">0{index + 1}</span>
               {link.label}
+              <div className="w-0 h-[2px] bg-primary group-hover:w-8 transition-all duration-300" />
             </motion.a>
           ))}
+          
           <motion.a
             href={getMeeshoLink()}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: mobileMenuOpen ? 1 : 0, scale: mobileMenuOpen ? 1 : 0.9 }}
-            transition={{ delay: 0.5 }}
-            className="flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground font-bold rounded-full text-xl mt-6 shadow-xl"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: mobileMenuOpen ? 1 : 0, y: mobileMenuOpen ? 0 : 40 }}
+            transition={{ delay: 0.6 }}
+            className="flex items-center gap-3 px-12 py-5 bg-primary text-primary-foreground font-black rounded-full text-xl mt-8 shadow-[0_20px_40px_rgba(76,175,111,0.3)] hover:scale-105 active:scale-95 transition-transform"
           >
             <ShoppingBag className="w-6 h-6" />
-            Buy Now
+            BUY NOW
           </motion.a>
         </div>
 
         {/* Decorative background logo in menu */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-5 scale-150 pointer-events-none">
-          <img src={logo} alt="" className="w-64 grayscale hue-rotate-180" />
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 opacity-10 scale-125 pointer-events-none">
+          <img src={logo} alt="" className="w-64 grayscale invert brightness-200" />
         </div>
       </motion.div>
     </>

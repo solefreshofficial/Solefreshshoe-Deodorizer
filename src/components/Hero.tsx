@@ -229,18 +229,18 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Perfectly Optical Centered) ── */}
-      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-10 md:gap-24" 
-           style={{ top: isMobile ? "45%" : "42%", transform: "translateY(-50%)" }}>
+      {/* ── Giant Background Text (Sophisticated Layering) ── */}
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-6 md:gap-24" 
+           style={{ top: isMobile ? "36%" : "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(65px, 18vw, 360px)",
+              fontSize: "clamp(60px, 20vw, 360px)",
               color: "#2A6040",
-              opacity: 0.45,
+              opacity: 0.35,
               lineHeight: 0.8,
-              letterSpacing: "-0.015em",
+              letterSpacing: "-0.02em",
               whiteSpace: "nowrap",
             }}
           >
@@ -251,11 +251,11 @@ export default function Hero() {
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(65px, 18vw, 360px)",
-              color: "#2A6040",
-              opacity: 0.45,
+              fontSize: "clamp(60px, 20vw, 360px)",
+              color: "transparent",
+              WebkitTextStroke: "1.5px rgba(42, 96, 64, 0.4)",
               lineHeight: 0.8,
-              letterSpacing: "-0.015em",
+              letterSpacing: "0.05em",
               whiteSpace: "nowrap",
             }}
           >
@@ -264,9 +264,9 @@ export default function Hero() {
         </div>
       </h1>
 
-      {/* ── Main Hero Bottle (Optical Centering & Professional Contrast) ── */}
+      {/* ── Main Hero Bottle (True Optical Mobile Centering) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "40%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
@@ -284,7 +284,7 @@ export default function Hero() {
 
       {/* ── Bottom Left Title (Balanced Spacing) ── */}
       <div 
-        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-[300px] sm:bottom-[280px] md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-[220px] sm:bottom-[240px] md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
       >
         <div
           className="dm-serif italic mb-2 opacity-95"
@@ -296,7 +296,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-none"
             style={{
-              fontSize: "clamp(40px, 9vw, 120px)",
+              fontSize: "clamp(32px, 8vw, 120px)",
               color: "#F0EAD6",
               letterSpacing: "0.01em",
             }}
@@ -306,7 +306,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-none"
             style={{
-              fontSize: "clamp(40px, 9vw, 120px)",
+              fontSize: "clamp(32px, 8vw, 120px)",
               color: "#F0EAD6",
               display: "block",
               letterSpacing: "0.01em",
