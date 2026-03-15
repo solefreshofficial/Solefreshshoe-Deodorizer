@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://solefreshofficial.github.io/Solefreshshoe-Deodorizer/</loc>
-  <lastmod>2026-02-16T15:58:51+00:00</lastmod>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://solefresh.in/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://solefresh.in/#science</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://solefresh.in/#ingredients</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://solefresh.in/#details</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://solefresh.in/shop</loc>
+    <lastmod>2026-03-16</lastmod>
+    <priority>0.90</priority>
+  </url>
 </urlset>
