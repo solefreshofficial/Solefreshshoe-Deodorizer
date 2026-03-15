@@ -70,13 +70,67 @@ export default function Hero() {
 
   }, { scope: containerRef });
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!containerRef.current) return;
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    const xPos = (clientX / innerWidth - 0.5) * 2; // -1 to 1 range
+    const yPos = (clientY / innerHeight - 0.5) * 2; // -1 to 1 range
+
+    // 3D Parallax for Background Bottles based on depth (scale)
+    gsap.to(".bg-bottle", {
+      x: (i, target) => {
+        const depth = parseFloat(target.dataset.scale || "1");
+        return xPos * depth * -100;
+      },
+      // Using rotation for Y instead of translation to avoid conflicting with ScrollTrigger's Y logic
+      rotationY: xPos * 45,
+      rotationX: -yPos * 45,
+      duration: 1.2,
+      ease: "power2.out",
+    });
+
+    // Main Bottle 3D Tilt
+    gsap.to(".main-bottle", {
+      x: xPos * -30,
+      y: yPos * -30,
+      rotationY: xPos * 15,
+      rotationX: -yPos * 15,
+      transformPerspective: 1000,
+      duration: 1.5,
+      ease: "power2.out",
+    });
+    
+    // UI Elements slight opposite movement (glassmorphism tracking)
+    gsap.to(".hero-ui", {
+      x: xPos * 15,
+      y: yPos * 15,
+      duration: 1.5,
+      ease: "power2.out"
+    });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to([".bg-bottle", ".main-bottle", ".hero-ui"], {
+      x: 0,
+      y: 0,
+      rotationY: 0,
+      rotationX: 0,
+      duration: 1.5,
+      ease: "power2.out",
+    });
+  };
+
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full flex items-center justify-center overflow-hidden"
       style={{
         height: "110vh", // Extra height for better scroll transition
         background: "radial-gradient(circle at center, #1b4d31 0%, #050D08 100%)", // Slightly brighter center
+        perspective: "1000px" // Enable 3D space
       }}
     >
       <style>{`
@@ -111,6 +165,7 @@ export default function Hero() {
             transform: `translate(-50%, -50%) rotate(${bottle.rotate}deg)`,
             width: "clamp(150px, 20vw, 300px)",
             opacity: 0,
+            transformStyle: "preserve-3d"
           }}
           alt=""
         />
@@ -152,7 +207,7 @@ export default function Hero() {
 
       {/* ── Main Hero Bottle ── */}
       <div className="main-bottle-wrapper absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-full h-full">
-        <div className="main-bottle relative w-fit h-fit">
+        <div className="main-bottle relative w-fit h-fit" style={{ transformStyle: "preserve-3d" }}>
           <img
             src={imagePath}
             alt="SoleFresh Natural Shoe Deodorizer"
@@ -200,21 +255,23 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom Right Specs Card ── */}
+      {/* ── Bottom Right Specs Card (Glassmorphism) ── */}
       <div
-        className="hero-ui hidden md:flex absolute right-12 md:right-16 z-30 p-6 w-[360px] flex-col gap-4"
+        className="hero-ui hidden md:flex absolute right-12 md:right-[6vw] lg:right-[8vw] z-30 p-6 w-[360px] flex-col gap-4"
         style={{
           bottom: "12%",
-          backgroundColor: "rgba(10,26,15,0.7)",
-          backdropFilter: "blur(16px)",
-          borderLeft: "2px solid #4CAF6F",
-          borderTop: "1px solid rgba(240,234,214,0.08)",
-          borderRight: "1px solid rgba(240,234,214,0.08)",
-          borderBottom: "1px solid rgba(240,234,214,0.08)",
-          boxShadow: "0 30px 60px rgba(0,0,0,0.6)",
+          backgroundColor: "rgba(255, 255, 255, 0.02)", /* Ultra sheer glass */
+          backdropFilter: "blur(24px)", /* Heavy frosted effect */
+          WebkitBackdropFilter: "blur(24px)",
+          borderLeft: "2px solid #4CAF6F", /* Accent border */
+          borderTop: "1px solid rgba(255, 255, 255, 0.1)", /* Light catch */
+          borderRight: "1px solid rgba(255, 255, 255, 0.05)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
+          boxShadow: "0 30px 60px rgba(0,0,0,0.7), inset 0 0 20px rgba(255,255,255,0.02)",
+          borderRadius: "8px"
         }}
       >
-        <div className="border-b border-[#F0EAD6]/20 pb-4">
+        <div className="border-b border-[rgba(255,255,255,0.15)] pb-4">
           <span className="anton tracking-wider uppercase text-[#F0EAD6] text-[15px]">
             SPEC — 2 SACHETS · 7×5CM · NATURAL FILL
           </span>
