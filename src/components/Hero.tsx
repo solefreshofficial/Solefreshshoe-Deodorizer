@@ -229,18 +229,18 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Lagunitas-Inspired Impact) ── */}
-      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-12" 
-           style={{ top: isMobile ? "30%" : "42%", transform: "translateY(-50%)" }}>
+      {/* ── Giant Background Text (Awwwards Aesthetic) ── */}
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
+           style={{ top: isMobile ? "42%" : "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
               fontSize: "clamp(65px, 24vw, 360px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.4 : 0.3,
-              lineHeight: 0.72,
-              letterSpacing: "-0.04em",
+              opacity: isMobile ? 0.35 : 0.3,
+              lineHeight: 0.8,
+              letterSpacing: "-0.02em",
               whiteSpace: "nowrap",
             }}
           >
@@ -253,9 +253,9 @@ export default function Hero() {
             style={{
               fontSize: "clamp(65px, 24vw, 360px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.4 : 0.3,
-              lineHeight: 0.72,
-              letterSpacing: "-0.04em",
+              opacity: isMobile ? 0.35 : 0.3,
+              lineHeight: 0.8,
+              letterSpacing: "-0.02em",
               whiteSpace: "nowrap",
             }}
           >
@@ -264,9 +264,9 @@ export default function Hero() {
         </div>
       </h1>
 
-      {/* ── Main Hero Bottle (High-Position Centering) ── */}
+      {/* ── Main Hero Bottle (Centered on Top of Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "33%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "44%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
@@ -282,39 +282,40 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Centered Label to Avoid Overlap ── */}
+      {/* ── Left Title with Aesthetic Spacing ── */}
       <div 
-        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none w-full items-center md:items-start px-5"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none w-full md:w-auto px-6 md:px-0"
         style={{ 
-          top: isMobile ? "56%" : "auto", 
-          bottom: isMobile ? "auto" : "12%",
+          bottom: isMobile ? "240px" : "12%",
           left: isMobile ? "0" : "8vw"
         }}
       >
         <div
-          className="dm-serif italic mb-1 md:mb-2 opacity-95 text-center md:text-left"
-          style={{ color: "#F0EAD6", fontSize: "clamp(13px, 2vw, 24px)" }}
+          className="dm-serif italic mb-2 md:mb-2 text-left opacity-95"
+          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2vw, 24px)" }}
         >
           Premium Natural Care
         </div>
-        <div className="flex flex-col gap-0 items-center md:items-start">
+        <div className="flex flex-col gap-1 md:gap-2 items-start">
           <span
-            className="anton uppercase leading-[0.8]"
+            className="anton uppercase leading-[1.05]"
             style={{
-              fontSize: "clamp(24px, 7vw, 120px)",
+              fontSize: "clamp(45px, 12vw, 120px)",
               color: "#F0EAD6",
               letterSpacing: "0.01em",
+              textShadow: "0 10px 30px rgba(0,0,0,0.6)"
             }}
           >
             SHOE
           </span>
           <span
-            className="anton uppercase leading-[0.8]"
+            className="anton uppercase leading-[1.05]"
             style={{
-              fontSize: "clamp(24px, 7vw, 120px)",
+              fontSize: "clamp(45px, 12vw, 120px)",
               color: "#F0EAD6",
               display: "block",
               letterSpacing: "0.01em",
+              textShadow: "0 10px 30px rgba(0,0,0,0.6)"
             }}
           >
             DEODORIZER
