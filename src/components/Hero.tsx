@@ -255,7 +255,8 @@ export default function Hero() {
             alt="SoleFresh Natural Shoe Deodorizer"
             style={{
               width: "clamp(280px, 48vw, 850px)",
-              filter: "drop-shadow(0 60px 120px rgba(0,0,0,0.9)) saturate(1.35) contrast(1.25) brightness(1.15)",
+              // Softened contrast and saturation for a more premium, natural look
+              filter: "drop-shadow(0 60px 120px rgba(0,0,0,0.85)) saturate(1.15) contrast(1.1) brightness(1.08)",
               transform: "rotate(-3deg)",
             }}
           />
@@ -266,7 +267,7 @@ export default function Hero() {
 
       {/* ── Bottom Left Title (Balanced Spacing) ── */}
       <div 
-        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-48 md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-[300px] sm:bottom-[280px] md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
       >
         <div
           className="dm-serif italic mb-2 opacity-95"

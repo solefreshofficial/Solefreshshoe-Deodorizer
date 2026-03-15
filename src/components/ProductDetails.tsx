@@ -224,7 +224,7 @@ const ProductDetails = () => {
                   alt="SoleFresh Product Package"
                   className="relative w-full max-w-[320px] md:max-w-md mx-auto"
                   style={{ 
-                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.85)) saturate(1.35) contrast(1.25) brightness(1.15)" 
+                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.7)) saturate(1.15) contrast(1.1) brightness(1.08)" 
                   }}
                   loading="lazy"
                 />
