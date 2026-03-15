@@ -222,8 +222,10 @@ const ProductDetails = () => {
                 <img
                   src={`${import.meta.env.BASE_URL}product.png`}
                   alt="SoleFresh Product Package"
-                  className="relative w-full max-w-[320px] md:max-w-md mx-auto drop-shadow-2xl"
-                  style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }}
+                  className="relative w-full max-w-[320px] md:max-w-md mx-auto"
+                  style={{ 
+                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.85)) saturate(1.35) contrast(1.25) brightness(1.15)" 
+                  }}
                   loading="lazy"
                 />
 

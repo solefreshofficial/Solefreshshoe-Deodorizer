@@ -17,41 +17,54 @@ export default function Hero() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Dense array of background bottle configurations for a congested 3D environment
   const bgBottles = [
-    { id: 1, top: "15%", left: "10%", scale: 0.4, rotate: -25, blur: 8, opacity: 0.2, speed: -100 },
-    { id: 2, top: "75%", left: "15%", scale: 0.6, rotate: 15, blur: 4, opacity: 0.3, speed: -250 },
-    { id: 3, top: "20%", left: "85%", scale: 0.5, rotate: 35, blur: 5, opacity: 0.25, speed: -150 },
-    { id: 4, top: "65%", left: "80%", scale: 0.7, rotate: -15, blur: 3, opacity: 0.35, speed: -300 },
-    { id: 5, top: "45%", left: "25%", scale: 0.3, rotate: 60, blur: 10, opacity: 0.15, speed: -80, hideMobile: true },
-    { id: 6, top: "35%", left: "70%", scale: 0.8, rotate: -10, blur: 2, opacity: 0.4, speed: -200 },
-    { id: 7, top: "85%", left: "45%", scale: 0.45, rotate: -45, blur: 6, opacity: 0.2, speed: -350 },
-    { id: 8, top: "10%", left: "55%", scale: 0.35, rotate: 20, blur: 7, opacity: 0.18, speed: -120 },
-    { id: 9, top: "50%", left: "90%", scale: 0.5, rotate: 100, blur: 4, opacity: 0.3, speed: -220, hideMobile: true },
-    { id: 10, top: "90%", left: "90%", scale: 0.6, rotate: -30, blur: 5, opacity: 0.25, speed: -280, hideMobile: true },
+    { id: 1, top: "10%", left: "5%", scale: 0.35, rotate: -35, blur: 8, opacity: 0.2, speed: -120 },
+    { id: 2, top: "85%", left: "10%", scale: 0.7, rotate: 15, blur: 4, opacity: 0.3, speed: -400 },
+    { id: 3, top: "25%", left: "90%", scale: 0.4, rotate: 45, blur: 6, opacity: 0.25, speed: -180 },
+    { id: 4, top: "75%", left: "80%", scale: 0.8, rotate: -25, blur: 2, opacity: 0.35, speed: -320 },
+    { id: 5, top: "40%", left: "15%", scale: 0.25, rotate: 75, blur: 10, opacity: 0.15, speed: -100, hideMobile: true },
+    { id: 6, top: "15%", left: "75%", scale: 0.6, rotate: -15, blur: 5, opacity: 0.28, speed: -220 },
+    { id: 7, top: "90%", left: "45%", scale: 0.45, rotate: -60, blur: 7, opacity: 0.24, speed: -380 },
+    { id: 8, top: "5%", left: "40%", scale: 0.3, rotate: 25, blur: 6, opacity: 0.2, speed: -150 },
+    { id: 9, top: "55%", left: "95%", scale: 0.5, rotate: 110, blur: 3, opacity: 0.32, speed: -280, hideMobile: true },
+    { id: 10, top: "30%", left: "30%", scale: 0.35, rotate: -20, blur: 9, opacity: 0.18, speed: -140, hideMobile: true },
+    { id: 11, top: "70%", left: "5%", scale: 0.55, rotate: 40, blur: 5, opacity: 0.29, speed: -340 },
+    { id: 12, top: "12%", left: "18%", scale: 0.28, rotate: 180, blur: 8, opacity: 0.15, speed: -110, hideMobile: true },
+    { id: 13, top: "88%", left: "88%", scale: 0.65, rotate: -80, blur: 4, opacity: 0.31, speed: -360 },
+    { id: 14, top: "45%", left: "82%", scale: 0.42, rotate: 55, blur: 7, opacity: 0.26, speed: -240, hideMobile: true },
+    { id: 15, top: "2%", left: "95%", scale: 0.32, rotate: -120, blur: 10, opacity: 0.23, speed: -130, hideMobile: true },
+    { id: 16, top: "98%", left: "20%", scale: 0.75, rotate: 30, blur: 3, opacity: 0.4, speed: -450, hideMobile: true },
+    { id: 17, top: "35%", left: "50%", scale: 0.3, rotate: -90, blur: 12, opacity: 0.1, speed: -100, hideMobile: true },
+    { id: 18, top: "60%", left: "20%", scale: 0.4, rotate: 15, blur: 6, opacity: 0.2, speed: -200, hideMobile: true },
+    { id: 19, top: "20%", left: "35%", scale: 0.25, rotate: 45, blur: 9, opacity: 0.15, speed: -150, hideMobile: true },
+    { id: 20, top: "80%", left: "65%", scale: 0.5, rotate: -25, blur: 5, opacity: 0.25, speed: -250, hideMobile: true },
+    { id: 21, top: "40%", left: "85%", scale: 0.35, rotate: 75, blur: 8, opacity: 0.2, speed: -180, hideMobile: true },
+    { id: 22, top: "10%", left: "80%", scale: 0.3, rotate: -45, blur: 7, opacity: 0.15, speed: -120, hideMobile: true },
   ];
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      // Set initial states explicitly
-      gsap.set(".hero-text-line", { y: 150, opacity: 0 });
-      gsap.set(".main-bottle-container", { y: "30%", opacity: 0, scale: 0.9, rotate: -10 });
+      // Set initial states explicitly for flawless entry
+      gsap.set(".hero-text-line", { y: isMobile ? 80 : 150, opacity: 0 });
+      gsap.set(".main-bottle-container", { y: "40%", opacity: 0, scale: 0.85, rotate: -10 });
       gsap.set(".hero-ui", { y: 30, opacity: 0 });
       gsap.set(".bg-bottle", { opacity: 0, scale: 0 });
       gsap.set(".bg-overlay", { opacity: 0 });
 
-      // Apple-style fade-in Timeline
+      // Cinematic load-in Timeline
       const tl = gsap.timeline();
-      tl.to(".bg-overlay", { opacity: 0.08, duration: 2, ease: "power2.inOut" })
-        .to(".hero-text-line", { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" }, "-=1.5")
-        .to(".main-bottle-container", { y: "0%", opacity: 1, scale: 1, rotate: -3, duration: 1.5, ease: "power3.out" }, "-=1.0")
+      tl.to(".bg-overlay", { opacity: 0.15, duration: 2, ease: "power2.inOut" })
+        .to(".hero-text-line", { y: 0, opacity: 0.45, duration: 1.5, stagger: 0.2, ease: "power4.out" }, "-=1.5")
+        .to(".main-bottle-container", { y: "0%", opacity: 1, scale: 1, rotate: -3, duration: 1.8, ease: "power4.out" }, "-=1.2")
         .to(".bg-bottle", { 
           opacity: (i, target) => parseFloat(target.getAttribute("data-opacity") || "0.2"), 
           scale: (i, target) => parseFloat(target.getAttribute("data-scale") || "1"), 
-          duration: 1.5, 
-          stagger: 0.05, 
-          ease: "power2.out" 
-        }, "-=1.0")
-        .to(".hero-ui", { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power2.out" }, "-=1.0");
+          duration: 2, 
+          stagger: 0.03, 
+          ease: "back.out(1.2)" 
+        }, "-=1.5")
+        .to(".hero-ui", { y: 0, opacity: 1, duration: 1.2, stagger: 0.1, ease: "power3.out" }, "-=1.2");
 
       // Scroll Parallax Timeline
       const scrollTl = gsap.timeline({
@@ -59,71 +72,125 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          scrub: 1.5,
         }
       });
 
-      scrollTl.to(".main-bottle-wrapper", { yPercent: 40, scale: 1.2, rotate: 6, ease: "none" }, 0);
-      scrollTl.to(".hero-text-line", { y: 200, opacity: 0, ease: "none", stagger: 0.1 }, 0);
-      scrollTl.to(".hero-ui", { y: -100, opacity: 0, ease: "none" }, 0);
+      scrollTl.to(".main-bottle-wrapper", { yPercent: isMobile ? 25 : 40, scale: isMobile ? 1.15 : 1.25, rotate: 8, ease: "none" }, 0);
+      scrollTl.to(".hero-text-line", { y: 250, opacity: 0, ease: "none", stagger: 0.1 }, 0);
+      scrollTl.to(".hero-ui", { y: -150, opacity: 0, ease: "none", stagger: 0.05 }, 0);
 
       gsap.utils.toArray<HTMLElement>(".bg-bottle").forEach((bottle) => {
         const speed = parseFloat(bottle.dataset.speed || "-100");
-        scrollTl.to(bottle, { y: speed, rotate: "+=25", opacity: 0, ease: "none" }, 0);
+        scrollTl.to(bottle, { y: speed, rotate: "+=40", opacity: 0, ease: "none" }, 0);
       });
 
-      // Continuous Floating
+      // Smooth Infinite Float for Main Bottle
       gsap.to(".main-bottle-container", {
-        y: "-=25",
+        y: isMobile ? "-=15" : "-=30",
         yoyo: true,
         repeat: -1,
-        duration: 3.5,
+        duration: 4,
         ease: "sine.inOut"
       });
 
     }, containerRef);
     
-    return () => ctx.revert(); // Ensure animations reset nicely
-  }, { scope: containerRef });
+    return () => ctx.revert();
+  }, { scope: containerRef, dependencies: [isMobile] });
+
+  // High-Performance Throttle using requestAnimationFrame
+  let mouseFrame = 0;
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (isMobile) return; 
+    
+    cancelAnimationFrame(mouseFrame);
+    mouseFrame = requestAnimationFrame(() => {
+      if (!containerRef.current) return;
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const xPos = (clientX / innerWidth - 0.5) * 2; 
+      const yPos = (clientY / innerHeight - 0.5) * 2; 
+
+      // 3D Parallax engine
+      gsap.to(".bg-bottle", {
+        x: (i, target) => parseFloat(target.dataset.scale || "1") * xPos * -60,
+        rotationY: xPos * 25,
+        rotationX: -yPos * 25,
+        duration: 2,
+        ease: "power2.out",
+      });
+
+      gsap.to(".main-bottle-container", {
+        x: xPos * -35,
+        y: yPos * -35,
+        rotationY: xPos * 18,
+        rotationX: -yPos * 18,
+        transformPerspective: 1200,
+        duration: 2.5,
+        ease: "power2.out",
+      });
+      
+      gsap.to(".hero-ui", {
+        x: xPos * 15,
+        y: yPos * 15,
+        duration: 2.5,
+        ease: "power2.out"
+      });
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (isMobile) return;
+    gsap.to([".bg-bottle", ".main-bottle-container", ".hero-ui"], {
+      x: 0,
+      y: 0,
+      rotationY: 0,
+      rotationX: 0,
+      duration: 2.5,
+      ease: "power2.out",
+    });
+  };
 
   return (
     <section
       ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className="relative w-full flex items-center justify-center overflow-hidden"
       style={{
-        height: "100svh",
+        height: "100svh", // Dynamic viewport height
         minHeight: "750px",
-        background: "radial-gradient(circle at center, #1b4d31 0%, #050D08 100%)",
+        background: "radial-gradient(circle at 50% 35%, #1b4d31 0%, #0a2416 40%, #030a05 100%)",
+        perspective: "1200px" 
       }}
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@1&display=swap');
         .anton { font-family: 'Anton', sans-serif; }
         .dm-serif { font-family: 'DM Serif Display', serif; }
-        .will-change-transform { will-change: transform, opacity; }
+        .accelerate { will-change: transform, opacity; }
       `}</style>
 
-      {/* ── Fixed Grayscale Noise Overlay ── */}
-      {/* Reduced baseFrequency and added feColorMatrix to prevent ugly colored pixels */}
+      {/* ── Fixed Grayscale Film Grain ── */}
       <div className="bg-overlay pointer-events-none absolute inset-0 z-40 mix-blend-overlay">
         <svg className="w-full h-full">
           <filter id="noiseFilter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
             <feColorMatrix type="saturate" values="0"/>
           </filter>
           <rect width="100%" height="100%" filter="url(#noiseFilter)" />
         </svg>
       </div>
 
-      {/* ── 3D Background Floating Bottles ── */}
+      {/* ── Congested 3D Background Bottles ── */}
       <div className="absolute inset-0 z-0">
         {bgBottles.map((bottle) => {
           if (isMobile && bottle.hideMobile) return null;
-
           return (
             <img
               key={bottle.id}
-              className="bg-bottle will-change-transform absolute pointer-events-none"
+              className="bg-bottle accelerate absolute pointer-events-none"
               src={imagePath}
               data-opacity={bottle.opacity}
               data-scale={bottle.scale}
@@ -132,10 +199,10 @@ export default function Hero() {
                 top: bottle.top,
                 left: bottle.left,
                 filter: isMobile 
-                  ? "brightness(1.1) drop-shadow(0 10px 15px rgba(0,0,0,0.5))"
-                  : `blur(${bottle.blur}px) brightness(1.2) contrast(1.1) drop-shadow(0 20px 30px rgba(0,0,0,0.5))`,
+                  ? "brightness(1.1) drop-shadow(0 10px 15px rgba(0,0,0,0.6))"
+                  : `blur(${bottle.blur}px) brightness(1.2) contrast(1.15) drop-shadow(0 20px 40px rgba(0,0,0,0.5))`,
                 transform: `translate(-50%, -50%) rotate(${bottle.rotate}deg)`,
-                width: "clamp(120px, 15vw, 250px)",
+                width: "clamp(120px, 15vw, 280px)",
                 opacity: 0,
               }}
               alt=""
@@ -144,16 +211,17 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text ── */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-6 md:gap-16 w-full">
+      {/* ── Giant Background Text (Perfectly Centered for Mobile) ── */}
+      <div className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-12 md:gap-24" 
+           style={{ top: "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
-            className="hero-text-line will-change-transform anton uppercase block text-center"
+            className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 18vw, 340px)",
+              fontSize: "clamp(65px, 18vw, 360px)",
               color: "#2A6040",
-              opacity: 0.5,
-              lineHeight: 0.82,
+              opacity: 0.45,
+              lineHeight: 0.8,
               letterSpacing: "-0.015em",
               whiteSpace: "nowrap",
             }}
@@ -163,12 +231,12 @@ export default function Hero() {
         </div>
         <div className="overflow-hidden">
           <span
-            className="hero-text-line will-change-transform anton uppercase block text-center"
+            className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 18vw, 340px)",
+              fontSize: "clamp(65px, 18vw, 360px)",
               color: "#2A6040",
-              opacity: 0.5,
-              lineHeight: 0.82,
+              opacity: 0.45,
+              lineHeight: 0.8,
               letterSpacing: "-0.015em",
               whiteSpace: "nowrap",
             }}
@@ -178,39 +246,39 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Main Hero Bottle ── */}
-      <div className="main-bottle-wrapper absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none flex items-center justify-center w-full h-full">
-        <div className="main-bottle-container relative w-fit h-fit will-change-transform">
+      {/* ── Main Hero Bottle (Centered & High Contrast) ── */}
+      <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
+           style={{ top: "45%", transform: "translateY(-50%)" }}>
+        <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
-            className="main-bottle"
             src={imagePath}
             alt="SoleFresh Natural Shoe Deodorizer"
             style={{
-              width: "clamp(250px, 45vw, 800px)",
-              filter: "drop-shadow(0 50px 100px rgba(0,0,0,0.85)) saturate(1.25) contrast(1.15)",
+              width: "clamp(280px, 48vw, 850px)",
+              filter: "drop-shadow(0 60px 120px rgba(0,0,0,0.9)) saturate(1.35) contrast(1.25) brightness(1.15)",
               transform: "rotate(-3deg)",
             }}
           />
-          {/* Subtle glow behind product */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#4CAF6F]/20 blur-[80px] rounded-full -z-10 animate-pulse" />
+          {/* Intense Cinematic Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-[#4CAF6F]/25 blur-[100px] rounded-full -z-10 animate-pulse" />
         </div>
       </div>
 
-      {/* ── Bottom Left Title ── */}
+      {/* ── Bottom Left Title (Balanced Spacing) ── */}
       <div 
-        className="hero-ui will-change-transform absolute z-30 flex flex-col pointer-events-none left-5 bottom-[240px] md:left-[8vw] md:bottom-[12%]"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-48 md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
       >
         <div
-          className="dm-serif italic mb-1 md:mb-2 opacity-90"
-          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2vw, 22px)" }}
+          className="dm-serif italic mb-2 opacity-95"
+          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2vw, 24px)" }}
         >
           Premium Natural Care
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1 md:gap-2">
           <span
-            className="anton uppercase leading-[0.9]"
+            className="anton uppercase leading-none"
             style={{
-              fontSize: "clamp(38px, 8vw, 110px)",
+              fontSize: "clamp(40px, 9vw, 120px)",
               color: "#F0EAD6",
               letterSpacing: "0.01em",
             }}
@@ -218,9 +286,9 @@ export default function Hero() {
             SHOE
           </span>
           <span
-            className="anton uppercase leading-[0.9]"
+            className="anton uppercase leading-none"
             style={{
-              fontSize: "clamp(38px, 8vw, 110px)",
+              fontSize: "clamp(40px, 9vw, 120px)",
               color: "#F0EAD6",
               display: "block",
               letterSpacing: "0.01em",
@@ -231,27 +299,27 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom Right Specs Card ── */}
+      {/* ── Bottom Right Specs Card (Glassmorphism & Responsive Center) ── */}
       <div
-        className="hero-ui will-change-transform flex absolute z-30 p-5 md:p-6 w-[calc(100%-2.5rem)] md:w-[350px] flex-col gap-3 left-5 md:left-auto right-5 md:right-[8vw] bottom-8 md:bottom-[12%]"
+        className="hero-ui accelerate flex absolute z-30 p-5 md:p-6 w-[calc(100%-2.5rem)] md:w-[360px] flex-col gap-3 md:gap-4 left-5 md:left-auto right-5 md:right-[6vw] lg:right-[8vw] bottom-8 md:bottom-[12%]"
         style={{
-          backgroundColor: isMobile ? "rgba(10,26,15,0.75)" : "rgba(255, 255, 255, 0.03)",
-          backdropFilter: "blur(16px)", 
-          WebkitBackdropFilter: "blur(16px)",
+          backgroundColor: "rgba(255, 255, 255, 0.03)",
+          backdropFilter: "blur(20px)", 
+          WebkitBackdropFilter: "blur(20px)",
           borderLeft: "2px solid #4CAF6F", 
-          borderTop: isMobile ? "none" : "1px solid rgba(255, 255, 255, 0.1)", 
-          borderRight: isMobile ? "none" : "1px solid rgba(255, 255, 255, 0.05)",
-          borderBottom: isMobile ? "none" : "1px solid rgba(255, 255, 255, 0.05)",
-          boxShadow: isMobile ? "0 20px 40px rgba(0,0,0,0.5)" : "0 20px 40px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.02)",
-          borderRadius: "8px"
+          borderTop: "1px solid rgba(255, 255, 255, 0.12)", 
+          borderRight: "1px solid rgba(255, 255, 255, 0.06)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          boxShadow: "0 20px 50px rgba(0,0,0,0.8), inset 0 0 10px rgba(255,255,255,0.02)",
+          borderRadius: "12px"
         }}
       >
-        <div className="border-b border-[#F0EAD6]/20 pb-2 md:pb-3">
-          <span className="anton tracking-wide md:tracking-wider uppercase text-[#F0EAD6] text-[14px] md:text-[15px]">
+        <div className="border-b border-[rgba(255,255,255,0.15)] pb-3">
+          <span className="anton tracking-wider uppercase text-[#F0EAD6] text-[14px] md:text-[15px]">
             SPEC — 2 SACHETS · 7×5CM · NATURAL FILL
           </span>
         </div>
-        <p className="text-[#F0EAD6] text-xs md:text-sm leading-relaxed opacity-90 font-medium tracking-wide">
+        <p className="text-[#F0EAD6] text-[13px] md:text-sm leading-relaxed opacity-95 font-medium tracking-wide">
           Activated carbon, silica gel & fragranced rice work together to absorb odor and moisture from inside your shoes overnight. No sprays, no chemicals, no mess.
         </p>
         <div className="mt-1 text-left pointer-events-auto">
