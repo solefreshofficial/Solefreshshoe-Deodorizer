@@ -1,217 +1,256 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Sparkles, Zap, Shield, ShoppingBag } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import productHero from "@/assets/product-hero.jpg";
-import logo from "@/assets/solefresh-logo.png";
-import { useTouchDevice } from "@/hooks/use-touch-device";
-import { scrollToIdWithOffset, getMeeshoLink } from "@/lib/utils";
-
-const Hero = () => {
-  const containerRef = useRef<HTMLElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const isTouchDevice = useTouchDevice();
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const scrollToId = (id: string) => scrollToIdWithOffset(id, 12);
-
-  const handleAnchor = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    const isHome = !location.hash || location.hash === "#" || location.hash === "#/" || location.pathname === "/";
-    if (isHome) {
-      scrollToId(id);
-    } else {
-      navigate("/");
-      setTimeout(() => scrollToId(id), 150);
-    }
-  };
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  useEffect(() => {
-    if (isTouchDevice) return;
-    
-    let frameId: number;
-    const handleMouseMove = (e: MouseEvent) => {
-      frameId = requestAnimationFrame(() => {
-        setMousePos({
-          x: (e.clientX / window.innerWidth - 0.5) * 10,
-          y: (e.clientY / window.innerHeight - 0.5) * 10,
-        });
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(frameId);
-    };
-  }, [isTouchDevice]);
-
+export default function Hero() {
   return (
     <section
-      ref={containerRef}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden py-20"
+      className="relative w-full overflow-hidden"
+      style={{ height: "100svh", backgroundColor: "#F5F2EA", minHeight: 600 }}
     >
-      {/* Background Elements - optimized */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-background" />
-        <div className="absolute inset-0 noise-overlay opacity-[0.02]" />
-        
-        {/* Animated Orbs - simpler */}
-        <div 
-          className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] animate-pulse-slow" 
-        />
-        <div 
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[100px] animate-pulse-slow"
-          style={{ animationDelay: "2s" }}
-        />
+      {/* ── Injected styles ── */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+        @keyframes floatUpDown {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+          50% { transform: translate(-50%, -50%) translateY(-12px); }
+        }
+        .product-float {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          animation: floatUpDown 3s ease-in-out infinite;
+          filter: drop-shadow(0 30px 60px rgba(0,0,0,0.28));
+          z-index: 20;
+        }
+        .anton { font-family: 'Anton', sans-serif; }
+        .hero-buy-btn:hover { background-color: #4CAF6F !important; }
+      `}</style>
+
+      {/* ── Giant background text ── */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center"
+        style={{ zIndex: 0, pointerEvents: "none", userSelect: "none" }}
+      >
+        <span
+          style={{
+            fontFamily: "'Anton', sans-serif",
+            fontSize: "clamp(80px, 22vw, 300px)",
+            color: "#1A3A2A",
+            opacity: 0.12,
+            display: "block",
+            textTransform: "uppercase",
+            lineHeight: 0.85,
+            letterSpacing: "-0.02em",
+            whiteSpace: "nowrap",
+          }}
+        >
+          BREATHE
+        </span>
+        <span
+          style={{
+            fontFamily: "'Anton', sans-serif",
+            fontSize: "clamp(80px, 22vw, 300px)",
+            color: "#1A3A2A",
+            opacity: 0.12,
+            display: "block",
+            textTransform: "uppercase",
+            lineHeight: 0.85,
+            letterSpacing: "-0.02em",
+            whiteSpace: "nowrap",
+          }}
+        >
+          FRESH
+        </span>
       </div>
 
-      <div className="container-wide relative z-10 px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Left - Content */}
-          <motion.div
-            style={{ y: isTouchDevice ? 0 : y, opacity: isTouchDevice ? 1 : opacity }}
-            className="flex-1 text-center lg:text-left space-y-8"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase"
-            >
-              <Sparkles className="w-3 h-3" />
-              Revolutionary Shoe Care
-            </motion.div>
+      {/* ── Product image (floating) ── */}
+      <img
+        src="/product.png"
+        alt="SoleFresh Shoe Deodorizer"
+        className="product-float"
+        style={{ width: "clamp(140px, 20vw, 280px)" }}
+      />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1]"
-            >
-              Fresh Shoes. <br />
-              <span className="text-gradient">Every Single Day.</span>
-            </motion.h1>
+      {/* ── Top navbar ── */}
+      <nav
+        className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 md:px-6 md:py-5"
+        style={{ zIndex: 30 }}
+      >
+        {/* LEFT — sidebar icons */}
+        <div className="flex flex-col gap-4">
+          {/* Hamburger */}
+          <div>
+            <div style={{ width: 20, height: 1.5, backgroundColor: "#1A3A2A", marginBottom: 4 }} />
+            <div style={{ width: 20, height: 1.5, backgroundColor: "#1A3A2A", marginBottom: 4 }} />
+            <div style={{ width: 20, height: 1.5, backgroundColor: "#1A3A2A" }} />
+          </div>
+          {/* Search */}
+          <svg width={18} height={18} viewBox="0 0 20 20" fill="none">
+            <circle cx={8} cy={8} r={5} stroke="#1A3A2A" strokeWidth={1.5} />
+            <line x1={12} y1={12} x2={17} y2={17} stroke="#1A3A2A" strokeWidth={1.5} />
+          </svg>
+        </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0"
-            >
-              The 100% natural, chemical-free way to eliminate odors and moisture from your favorite footwear. 
-            </motion.p>
+        {/* CENTER — brand name */}
+        <div
+          className="absolute"
+          style={{
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontWeight: "bold",
+            letterSpacing: "0.25em",
+            fontSize: 11,
+            color: "#1A3A2A",
+          }}
+        >
+          SOLEFRESH
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5 pt-4"
-            >
-              <a
-                href={getMeeshoLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-primary-foreground font-black text-lg rounded-[2rem] transition-all duration-500 hover:scale-[1.05] hover:shadow-[0_0_50px_-12px_hsl(var(--primary))] active:scale-95 overflow-hidden"
-              >
-                {/* Magnetic shine */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                
-                {/* Icon with animation */}
-                <ShoppingBag className="w-6 h-6 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12" />
-                
-                <span className="relative z-10 uppercase tracking-tight">Buy Now on Meesho</span>
-                
-                <ArrowDown className="w-5 h-5 -rotate-90 transition-transform duration-500 group-hover:translate-x-2" />
-                
-                {/* Glow ring */}
-                <div className="absolute inset-0 border-2 border-primary-foreground/20 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-              
-              <button
-                onClick={(e) => handleAnchor(e as any, 'science')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-secondary/30 backdrop-blur-md border border-white/5 text-foreground font-bold rounded-[2rem] hover:bg-secondary/60 transition-all duration-300"
-              >
-                See How It Works
-              </button>
-            </motion.div>
+        {/* RIGHT — CTA button */}
+        <button
+          className="hero-buy-btn"
+          style={{
+            backgroundColor: "#1A3A2A",
+            color: "#F5F2EA",
+            padding: "8px 20px",
+            fontSize: 10,
+            fontWeight: "bold",
+            letterSpacing: "0.2em",
+            border: "none",
+            cursor: "pointer",
+            transition: "background-color 0.2s",
+            borderRadius: 0,
+          }}
+        >
+          BUY NOW
+        </button>
+      </nav>
 
-            {/* Trusted Badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-8"
-            >
-              {[
-                { icon: Shield, text: "100% Natural" },
-                { icon: Zap, text: "Instant Effect" },
-                { icon: Sparkles, text: "Eco-Friendly" }
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <item.icon className="w-4 h-4 text-primary" />
-                  {item.text}
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
+      {/* ── Bottom-left text block ── */}
+      <div
+        className="absolute bottom-5 left-4 md:bottom-8 md:left-10"
+        style={{ zIndex: 20 }}
+      >
+        {/* Small italic label */}
+        <div
+          style={{
+            fontSize: 11,
+            fontStyle: "italic",
+            color: "#1A3A2A",
+            opacity: 0.6,
+            marginBottom: 4,
+          }}
+        >
+          Natural Shoe Deodorizer
+        </div>
 
-          {/* Right - Product Visualization */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex-1 relative w-full max-w-[500px]"
+        {/* Large word SOLE */}
+        <span
+          className="anton"
+          style={{
+            fontSize: "clamp(40px, 8vw, 100px)",
+            color: "#1A3A2A",
+            lineHeight: 1,
+            display: "block",
+          }}
+        >
+          SOLE
+        </span>
+
+        {/* Partial word FRESH — top-half visible */}
+        <div
+          style={{
+            overflow: "hidden",
+            height: "clamp(20px, 4vw, 50px)",
+          }}
+        >
+          <span
+            className="anton"
             style={{
-              perspective: "1000px",
-              rotateY: isTouchDevice ? 0 : mousePos.x,
-              rotateX: isTouchDevice ? 0 : -mousePos.y,
+              fontSize: "clamp(40px, 8vw, 100px)",
+              color: "#1A3A2A",
+              display: "block",
+              lineHeight: 1,
             }}
           >
-            {/* Glow backdrop */}
-            <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-slow" />
-            
-            <div className="relative animate-float will-change-transform">
-              <img
-                src={productHero}
-                alt="SoleFresh Product"
-                className="w-full h-auto rounded-[2rem] shadow-2xl border border-white/10"
-                loading="eager"
-              />
-              
-              {/* Badge Overlay */}
-              <div className="absolute -top-6 -right-6 lg:-right-10 bg-background/80 backdrop-blur-xl border border-primary/20 p-4 rounded-3xl shadow-xl animate-float-slow" style={{ animationDelay: "1s" }}>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-muted-foreground uppercase font-bold tracking-tighter">Premium</div>
-                    <div className="text-sm font-bold">Shoe Care</div>
-                  </div>
-                </div>
-              </div>
+            FRESH
+          </span>
+        </div>
+      </div>
 
-              {/* Status Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-background/90 backdrop-blur-xl border border-green-500/20 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground">In Stock</span>
-              </div>
-            </div>
-          </motion.div>
+      {/* ── Bottom-right stats card ── */}
+      <div
+        className="hidden md:block absolute"
+        style={{
+          bottom: 32,
+          right: 32,
+          zIndex: 20,
+          border: "1px solid rgba(26,58,42,0.35)",
+          padding: 16,
+          backgroundColor: "rgba(245,242,234,0.85)",
+          width: 176,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 9,
+            letterSpacing: "0.15em",
+            color: "#1A3A2A",
+            opacity: 0.5,
+            textTransform: "uppercase",
+            marginBottom: 4,
+          }}
+        >
+          EFFECTIVENESS
+        </div>
+        <div
+          className="anton"
+          style={{ fontSize: 36, color: "#1A3A2A", lineHeight: 1, marginBottom: 8 }}
+        >
+          98%
+        </div>
+        <hr
+          style={{
+            width: "100%",
+            height: 1,
+            backgroundColor: "rgba(26,58,42,0.2)",
+            border: "none",
+            marginBottom: 8,
+          }}
+        />
+        <div
+          style={{
+            fontSize: 9,
+            letterSpacing: "0.15em",
+            color: "#1A3A2A",
+            opacity: 0.5,
+            textTransform: "uppercase",
+            marginBottom: 4,
+          }}
+        >
+          BACTERIA KILLED
+        </div>
+        <div
+          className="anton"
+          style={{ fontSize: 36, color: "#1A3A2A", lineHeight: 1, marginBottom: 4 }}
+        >
+          24hrs
+        </div>
+        <div
+          style={{ fontSize: 9, color: "#1A3A2A", opacity: 0.5, marginBottom: 12 }}
+        >
+          Lasting freshness
+        </div>
+        <div
+          style={{
+            fontSize: 9,
+            letterSpacing: "0.1em",
+            color: "#1A3A2A",
+            textDecoration: "underline",
+            cursor: "pointer",
+            textTransform: "uppercase",
+          }}
+        >
+          LEARN MORE →
         </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
