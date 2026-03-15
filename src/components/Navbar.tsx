@@ -73,9 +73,11 @@ const Navbar = () => {
               className="flex items-center relative z-10 group"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
-                setMousePos({
-                  x: (e.clientX - rect.left - rect.width / 2) / 10,
-                  y: (e.clientY - rect.top - rect.height / 2) / 10,
+                requestAnimationFrame(() => {
+                  setMousePos({
+                    x: (e.clientX - rect.left - rect.width / 2) / 10,
+                    y: (e.clientY - rect.top - rect.height / 2) / 10,
+                  });
                 });
               }}
               onMouseLeave={() => setMousePos({ x: 0, y: 0 })}

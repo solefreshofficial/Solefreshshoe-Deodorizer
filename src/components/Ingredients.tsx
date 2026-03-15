@@ -40,17 +40,9 @@ const Ingredients = () => {
     <section ref={ref} id="ingredients" className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-card via-background to-card" />
 
-      {/* Floating elements */}
-      <motion.div
-        className="absolute top-20 right-20 w-48 md:w-64 h-48 md:h-64 rounded-full border border-primary/10 hidden md:block"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute bottom-20 left-20 w-64 md:w-96 h-64 md:h-96 rounded-full border border-primary/5 hidden md:block"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Background Orbs - simplified */}
+      <div className="absolute top-[10%] left-[-5%] w-[30%] h-[30%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container-wide relative z-10">
         <motion.div

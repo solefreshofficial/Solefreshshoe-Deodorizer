@@ -22,11 +22,18 @@ const Shop = () => {
   const [selectedPlatform, setSelectedPlatform] = useState<number | null>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let frameId: number;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      frameId = requestAnimationFrame(() => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+      });
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(frameId);
+    };
   }, []);
 
   const handlePlatformClick = (index: number, url: string) => {
@@ -71,19 +78,11 @@ const Shop = () => {
           }}
         />
 
-        {/* 3D rotating ring */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
+        {/* 3D rotating ring - simplified */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-20 hidden md:block">
           <div 
-            className="absolute inset-0 rounded-full border border-primary/10 animate-spin-slow will-change-transform"
-            style={{ animationDuration: "30s" }}
-          />
-          <div 
-            className="absolute inset-8 rounded-full border border-primary/5 animate-spin-slow will-change-transform"
-            style={{ animationDuration: "40s", animationDirection: "reverse" }}
-          />
-          <div 
-            className="absolute inset-16 rounded-full border border-primary/10 animate-spin-slow will-change-transform"
-            style={{ animationDuration: "50s" }}
+            className="absolute inset-0 rounded-full border border-primary/20 animate-spin-slow"
+            style={{ animationDuration: "60s" }}
           />
         </div>
       </div>
