@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Package, Calendar, MapPin, ArrowRight, Sparkles, Shield, Instagram } from "lucide-react";
 import { getMeeshoLink } from "@/lib/utils";
-import productPack from "@/assets/product-pack.jpg";
 import { useTouchDevice } from "@/hooks/use-touch-device";
 
 const ProductDetails = () => {
@@ -221,17 +220,17 @@ const ProductDetails = () => {
               {/* Product container */}
               <div className="relative">
                 <img
-                  src={productPack}
+                  src={`${import.meta.env.BASE_URL}product.png`}
                   alt="SoleFresh Product Package"
-                  className="relative w-full max-w-[320px] md:max-w-md mx-auto rounded-2xl md:rounded-3xl shadow-lg md:shadow-2xl"
+                  className="relative w-full max-w-[320px] md:max-w-md mx-auto drop-shadow-2xl"
+                  style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }}
                   loading="lazy"
                 />
 
                 {/* Make CTAs responsive */}
 
-
                 {/* Overlay effect */}
-                <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-t from-background/30 via-transparent to-white/5" />
+                <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-transparent" />
                 
                 {/* Shimmer - simplified for mobile */}
                 <div className="absolute inset-0 rounded-2xl md:rounded-3xl overflow-hidden">
