@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { scrollToIdWithOffset } from "@/lib/utils";
+import { scrollToIdWithOffset, getMeeshoLink } from "@/lib/utils";
 import logo from "@/assets/solefresh-logo.png";
 
 const navLinks = [
@@ -120,8 +120,10 @@ const Navbar = () => {
 
             {/* CTA Button with enhanced effects */}
             <div className="flex items-center gap-4">
-              <Link
-                to="/shop"
+              <a
+                href={getMeeshoLink()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded-full relative overflow-hidden group transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
               >
                 <ShoppingBag className="w-4 h-4 relative z-10" />
@@ -130,7 +132,7 @@ const Navbar = () => {
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 {/* Glow */}
                 <span className="absolute inset-0 bg-primary-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
+              </a>
 
               {/* Mobile menu button */}
               <button
@@ -178,14 +180,16 @@ const Navbar = () => {
               {link.label}
             </motion.a>
           ))}
-          <Link
-            to="/shop"
+          <a
+            href={getMeeshoLink()}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center justify-center gap-2 w-full text-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full mt-4"
           >
             <ShoppingBag className="w-4 h-4" />
             Buy Now
-          </Link>
+          </a>
         </div>
       </motion.div>
     </>

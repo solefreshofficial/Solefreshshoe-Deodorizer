@@ -2,6 +2,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Package, Calendar, MapPin, ArrowRight, Sparkles, Shield, Instagram } from "lucide-react";
+import { getMeeshoLink } from "@/lib/utils";
 import productPack from "@/assets/product-pack.jpg";
 import { useTouchDevice } from "@/hooks/use-touch-device";
 
@@ -173,8 +174,10 @@ const ProductDetails = () => {
               transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
               className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
             >
-              <Link
-                to="/shop"
+              <a
+                href={getMeeshoLink()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden relative group transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 active:scale-95"
               >
                 {/* Animated background */}
@@ -182,7 +185,7 @@ const ProductDetails = () => {
                 
                 <span className="relative z-10 text-base md:text-lg">Buy Now</span>
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
+              </a>
               
               <div className="flex items-center justify-center sm:justify-start gap-2 px-4">
                 <Shield className="w-4 h-4 md:w-5 md:h-5 text-green-500" />

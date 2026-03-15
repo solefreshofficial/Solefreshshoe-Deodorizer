@@ -6,7 +6,7 @@ import productHero from "@/assets/product-hero.jpg";
 import logo from "@/assets/solefresh-logo.png";
 import { useTouchDevice } from "@/hooks/use-touch-device";
 import { Button } from "@/components/ui/button";
-import { scrollToIdWithOffset } from "@/lib/utils";
+import { scrollToIdWithOffset, getMeeshoLink } from "@/lib/utils";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -286,7 +286,7 @@ const Hero = () => {
         >
           <div className="flex items-center justify-center gap-4">
             <Button asChild>
-              <Link to="/shop">Buy now</Link>
+              <a href={getMeeshoLink()} target="_blank" rel="noopener noreferrer">Buy now</a>
             </Button>
           </div>
         </motion.div>

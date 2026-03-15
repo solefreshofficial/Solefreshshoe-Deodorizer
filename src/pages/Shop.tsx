@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { ExternalLink, ShoppingBag, Sparkles, Shield, Truck, ArrowRight } from "lucide-react";
 import logo from "@/assets/solefresh-logo.png";
 
+import { getMeeshoLink } from "@/lib/utils";
+
 const platforms = [
   {
     name: "Meesho",
     description: "Best prices with COD available",
-    url: "https://www.meesho.com/",
+    url: getMeeshoLink(),
     color: "from-pink-500 to-rose-600",
     icon: "🛍️",
     features: ["Cash on Delivery", "Easy Returns", "Best Prices"],
@@ -17,7 +19,6 @@ const platforms = [
 
 const Shop = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [countdown, setCountdown] = useState(5);
   const [selectedPlatform, setSelectedPlatform] = useState<number | null>(null);
 
   useEffect(() => {
@@ -30,18 +31,8 @@ const Shop = () => {
 
   const handlePlatformClick = (index: number, url: string) => {
     setSelectedPlatform(index);
-    setCountdown(5);
-    
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          window.open(url, "_blank", "noopener,noreferrer");
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    window.open(url, "_blank", "noopener,noreferrer");
+    setTimeout(() => setSelectedPlatform(null), 1000);
   };
 
   return (
@@ -210,9 +201,6 @@ const Shop = () => {
                   <div className={`flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all duration-300`}>
                     {selectedPlatform === index ? (
                       <span className="flex items-center gap-2">
-                        <span className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center text-sm font-bold">
-                          {countdown}
-                        </span>
                         Redirecting...
                       </span>
                     ) : (
