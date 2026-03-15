@@ -189,7 +189,7 @@ const Navbar = () => {
                 delay: mobileMenuOpen ? 0.2 + index * 0.1 : 0,
                 duration: 0.5 
               }}
-              className="text-4xl anton tracking-tight text-foreground hover:text-primary transition-colors"
+              className="text-3xl font-sans font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
             >
               {link.label}
             </motion.a>

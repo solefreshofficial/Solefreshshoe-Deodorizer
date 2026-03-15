@@ -168,10 +168,10 @@ export default function Hero() {
       </div>
 
       {/* ── Bottom Left Title (Full - No Clipping) ── */}
-      <div className="hero-ui absolute bottom-12 left-6 md:bottom-20 md:left-[8vw] z-30 flex flex-col pointer-events-none">
+      <div className="hero-ui absolute left-6 md:left-[8vw] z-30 flex flex-col pointer-events-none" style={{ bottom: "12%" }}>
         <div
-          className="dm-serif italic mb-2 md:mb-3 opacity-90"
-          style={{ color: "#F0EAD6", fontSize: "clamp(18px, 2.5vw, 26px)" }}
+          className="dm-serif italic mb-2 opacity-90"
+          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2.2vw, 24px)" }}
         >
           Premium Natural Care
         </div>
@@ -179,7 +179,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-[0.9]"
             style={{
-              fontSize: "clamp(45px, 10vw, 130px)",
+              fontSize: "clamp(40px, 8vw, 110px)",
               color: "#F0EAD6",
               letterSpacing: "0.01em",
             }}
@@ -189,7 +189,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-[0.9]"
             style={{
-              fontSize: "clamp(45px, 10vw, 130px)",
+              fontSize: "clamp(40px, 8vw, 110px)",
               color: "#F0EAD6",
               display: "block",
               letterSpacing: "0.01em",
@@ -202,8 +202,9 @@ export default function Hero() {
 
       {/* ── Bottom Right Specs Card ── */}
       <div
-        className="hero-ui hidden md:flex absolute bottom-12 right-12 md:bottom-20 md:right-16 z-30 p-6 w-[360px] flex-col gap-4"
+        className="hero-ui hidden md:flex absolute right-12 md:right-16 z-30 p-6 w-[360px] flex-col gap-4"
         style={{
+          bottom: "12%",
           backgroundColor: "rgba(10,26,15,0.7)",
           backdropFilter: "blur(16px)",
           borderLeft: "2px solid #4CAF6F",
