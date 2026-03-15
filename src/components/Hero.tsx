@@ -229,9 +229,9 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Awwwards Sleek Variant) ── */}
+      {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
-           style={{ top: "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "54%" : "45%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -252,10 +252,10 @@ export default function Hero() {
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
               fontSize: "clamp(60px, 20vw, 360px)",
-              color: "transparent",
-              WebkitTextStroke: "1.5px rgba(42, 96, 64, 0.4)",
+              color: "#2A6040",
+              opacity: isMobile ? 0.25 : 0.3,
               lineHeight: 0.8,
-              letterSpacing: "0.03em",
+              letterSpacing: "-0.01em",
               whiteSpace: "nowrap",
             }}
           >
