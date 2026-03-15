@@ -41,6 +41,12 @@ export default function Hero() {
     { id: 20, top: "80%", left: "65%", scale: 0.5, rotate: -25, blur: 5, opacity: 0.25, speed: -250, hideMobile: true },
     { id: 21, top: "40%", left: "85%", scale: 0.35, rotate: 75, blur: 8, opacity: 0.2, speed: -180, hideMobile: true },
     { id: 22, top: "10%", left: "80%", scale: 0.3, rotate: -45, blur: 7, opacity: 0.15, speed: -120, hideMobile: true },
+    { id: 23, top: "50%", left: "5%", scale: 0.5, rotate: 30, blur: 4, opacity: 0.22, speed: -200 },
+    { id: 24, top: "30%", left: "95%", scale: 0.4, rotate: -20, blur: 6, opacity: 0.18, speed: -150 },
+    { id: 25, top: "95%", left: "75%", scale: 0.6, rotate: 45, blur: 3, opacity: 0.3, speed: -380 },
+    { id: 26, top: "65%", left: "10%", scale: 0.45, rotate: -30, blur: 5, opacity: 0.25, speed: -300 },
+    { id: 27, top: "5%", left: "15%", scale: 0.35, rotate: 10, blur: 8, opacity: 0.15, speed: -100, hideMobile: true },
+    { id: 28, top: "85%", left: "30%", scale: 0.5, rotate: 50, blur: 2, opacity: 0.3, speed: -400 },
   ];
 
   useGSAP(() => {
@@ -61,7 +67,7 @@ export default function Hero() {
           opacity: (i, target) => parseFloat(target.getAttribute("data-opacity") || "0.2"), 
           scale: (i, target) => parseFloat(target.getAttribute("data-scale") || "1"), 
           duration: 2, 
-          stagger: 0.03, 
+          stagger: 0.02, 
           ease: "back.out(1.2)" 
         }, "-=1.5")
         .to(".hero-ui", { y: 0, opacity: 1, duration: 1.2, stagger: 0.1, ease: "power3.out" }, "-=1.2");
@@ -159,7 +165,7 @@ export default function Hero() {
       onMouseLeave={handleMouseLeave}
       className="relative w-full flex items-center justify-center overflow-hidden"
       style={{
-        height: "100svh", // Dynamic viewport height
+        height: "100svh", 
         minHeight: "750px",
         background: "radial-gradient(circle at 50% 35%, #1b4d31 0%, #0a2416 40%, #030a05 100%)",
         perspective: "1200px" 
@@ -211,9 +217,9 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Perfectly Centered for Mobile) ── */}
-      <div className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-12 md:gap-24" 
-           style={{ top: "42%", transform: "translateY(-50%)" }}>
+      {/* ── Giant Background Text (Perfectly Optical Centered) ── */}
+      <div className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-10 md:gap-24" 
+           style={{ top: isMobile ? "38%" : "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -246,16 +252,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Main Hero Bottle (Centered & High Contrast) ── */}
+      {/* ── Main Hero Bottle (Optical Centering & Professional Contrast) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "40%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
             alt="SoleFresh Natural Shoe Deodorizer"
             style={{
               width: "clamp(280px, 48vw, 850px)",
-              // Softened contrast and saturation for a more premium, natural look
               filter: "drop-shadow(0 60px 120px rgba(0,0,0,0.85)) saturate(1.15) contrast(1.1) brightness(1.08)",
               transform: "rotate(-3deg)",
             }}
