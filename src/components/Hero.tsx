@@ -229,18 +229,18 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Awwwards Aesthetic) ── */}
+      {/* ── Giant Background Text (Awwwards Sleek Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
            style={{ top: "45%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(65px, 24vw, 360px)",
+              fontSize: "clamp(60px, 20vw, 360px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.35 : 0.3,
+              opacity: isMobile ? 0.25 : 0.3,
               lineHeight: 0.8,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.01em",
               whiteSpace: "nowrap",
             }}
           >
@@ -251,11 +251,11 @@ export default function Hero() {
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(65px, 24vw, 360px)",
-              color: "#2A6040",
-              opacity: isMobile ? 0.35 : 0.3,
+              fontSize: "clamp(60px, 20vw, 360px)",
+              color: "transparent",
+              WebkitTextStroke: "1.5px rgba(42, 96, 64, 0.4)",
               lineHeight: 0.8,
-              letterSpacing: "-0.02em",
+              letterSpacing: "0.03em",
               whiteSpace: "nowrap",
             }}
           >
@@ -264,16 +264,16 @@ export default function Hero() {
         </div>
       </h1>
 
-      {/* ── Main Hero Bottle (Perfectly Centered with Text) ── */}
+      {/* ── Main Hero Bottle (Centered & Scaled Up for Mobile) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "54%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
             alt="SoleFresh Natural Shoe Deodorizer"
             style={{
-              width: "clamp(320px, 58vw, 850px)",
-              filter: "drop-shadow(0 60px 120px rgba(0,0,0,0.85)) saturate(1.15) contrast(1.1) brightness(1.08)",
+              width: "clamp(350px, 72vw, 850px)",
+              filter: "drop-shadow(0 50px 100px rgba(0,0,0,0.85)) saturate(1.15) contrast(1.1) brightness(1.08)",
               transform: "rotate(-3deg)",
             }}
           />
@@ -282,38 +282,40 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Left Title with Aesthetic Spacing ── */}
+      {/* ── Left Title with Aesthetic Spacing (Top-Aligned on Mobile) ── */}
       <div 
-        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none w-full md:w-auto px-8 md:px-0"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none w-auto max-w-[90vw]"
         style={{ 
-          bottom: isMobile ? "280px" : "12%",
-          left: isMobile ? "0" : "8vw"
+          top: isMobile ? "12%" : "auto",
+          bottom: isMobile ? "auto" : "12%",
+          left: "8vw",
+          alignItems: "flex-start",
         }}
       >
         <div
           className="dm-serif italic mb-2 md:mb-2 text-left opacity-90"
-          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2vw, 24px)" }}
+          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2.5vw, 24px)" }}
         >
           Premium Natural Care
         </div>
         <div className="flex flex-col gap-1 items-start">
           <span
-            className="font-sans font-black uppercase leading-[1.05] tracking-tight"
+            className="anton uppercase leading-[1.05] tracking-normal"
             style={{
-              fontSize: "clamp(42px, 11vw, 120px)",
+              fontSize: "clamp(46px, 13.5vw, 120px)",
               color: "#F0EAD6",
-              textShadow: "0 10px 30px rgba(0,0,0,0.6)"
+              textShadow: "0 8px 24px rgba(0,0,0,0.6)"
             }}
           >
             SHOE
           </span>
           <span
-            className="font-sans font-black uppercase leading-[1.05] tracking-tight"
+            className="anton uppercase leading-[1.05] tracking-normal"
             style={{
-              fontSize: "clamp(42px, 11vw, 120px)",
+              fontSize: "clamp(46px, 13.5vw, 120px)",
               color: "#F0EAD6",
               display: "block",
-              textShadow: "0 10px 30px rgba(0,0,0,0.6)"
+              textShadow: "0 8px 24px rgba(0,0,0,0.6)"
             }}
           >
             DEODORIZER
