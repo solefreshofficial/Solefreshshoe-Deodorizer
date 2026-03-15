@@ -47,6 +47,18 @@ export default function Hero() {
     { id: 26, top: "65%", left: "10%", scale: 0.45, rotate: -30, blur: 5, opacity: 0.25, speed: -300 },
     { id: 27, top: "5%", left: "15%", scale: 0.35, rotate: 10, blur: 8, opacity: 0.15, speed: -100, hideMobile: true },
     { id: 28, top: "85%", left: "30%", scale: 0.5, rotate: 50, blur: 2, opacity: 0.3, speed: -400 },
+    { id: 29, top: "45%", left: "45%", scale: 0.3, rotate: 15, blur: 10, opacity: 0.1, speed: -120, hideMobile: true },
+    { id: 30, top: "20%", left: "60%", scale: 0.25, rotate: -60, blur: 9, opacity: 0.12, speed: -140, hideMobile: true },
+    { id: 31, top: "70%", left: "95%", scale: 0.4, rotate: 25, blur: 6, opacity: 0.15, speed: -200 },
+    { id: 32, top: "15%", left: "25%", scale: 0.3, rotate: 40, blur: 7, opacity: 0.18, speed: -150 },
+    { id: 33, top: "80%", left: "5%", scale: 0.5, rotate: -15, blur: 4, opacity: 0.2, speed: -300 },
+    { id: 34, top: "55%", left: "35%", scale: 0.35, rotate: 110, blur: 5, opacity: 0.15, speed: -220, hideMobile: true },
+    { id: 35, top: "90%", left: "60%", scale: 0.45, rotate: -5, blur: 3, opacity: 0.25, speed: -350 },
+    { id: 36, top: "25%", left: "10%", scale: 0.3, rotate: 90, blur: 8, opacity: 0.12, speed: -110 },
+    { id: 37, top: "60%", left: "85%", scale: 0.4, rotate: -30, blur: 6, opacity: 0.2, speed: -250 },
+    { id: 38, top: "10%", left: "70%", scale: 0.25, rotate: 180, blur: 11, opacity: 0.1, speed: -90, hideMobile: true },
+    { id: 39, top: "40%", left: "5%", scale: 0.33, rotate: -45, blur: 7, opacity: 0.14, speed: -160 },
+    { id: 40, top: "75%", left: "50%", scale: 0.42, rotate: 20, blur: 5, opacity: 0.22, speed: -280 },
   ];
 
   useGSAP(() => {
@@ -218,8 +230,8 @@ export default function Hero() {
       </div>
 
       {/* ── Giant Background Text (Perfectly Optical Centered) ── */}
-      <div className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-10 md:gap-24" 
-           style={{ top: isMobile ? "38%" : "42%", transform: "translateY(-50%)" }}>
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-10 md:gap-24" 
+           style={{ top: isMobile ? "45%" : "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -250,11 +262,11 @@ export default function Hero() {
             EVERY DAY
           </span>
         </div>
-      </div>
+      </h1>
 
       {/* ── Main Hero Bottle (Optical Centering & Professional Contrast) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "40%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
