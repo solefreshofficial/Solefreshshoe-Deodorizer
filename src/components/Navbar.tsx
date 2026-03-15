@@ -157,41 +157,60 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile menu with improved animation */}
+      {/* Full-screen Mobile Menu */}
       <motion.div
-        initial={false}
+        initial={{ opacity: 0, clipPath: "circle(0% at 90% 5%)" }}
         animate={{
           opacity: mobileMenuOpen ? 1 : 0,
-          y: mobileMenuOpen ? 0 : -20,
-          pointerEvents: mobileMenuOpen ? "auto" : "none",
+          clipPath: mobileMenuOpen ? "circle(150% at 90% 5%)" : "circle(0% at 90% 5%)",
         }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-x-0 top-16 z-40 bg-background/95 backdrop-blur-2xl border-b border-border md:hidden"
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed inset-0 z-[60] bg-background md:hidden flex flex-col items-center justify-center pointer-events-none"
+        style={{ pointerEvents: mobileMenuOpen ? "auto" : "none" }}
       >
-        <div className="px-6 py-6 space-y-4">
+        <div className="absolute top-5 right-6">
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="p-2 text-primary"
+          >
+            <X className="w-8 h-8" />
+          </button>
+        </div>
+
+        <div className="flex flex-col items-center gap-8 px-6">
           {navLinks.map((link, index) => (
             <motion.a
               key={link.href}
               href={link.href}
               onClick={(e) => { setMobileMenuOpen(false); handleAnchor(e, link.href.replace('#','')); }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? 0 : -20 }}
-              transition={{ delay: index * 0.1 }}
-              className="block text-lg text-muted-foreground hover:text-foreground py-2 transition-colors duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: mobileMenuOpen ? 1 : 0, y: mobileMenuOpen ? 0 : 20 }}
+              transition={{ 
+                delay: mobileMenuOpen ? 0.2 + index * 0.1 : 0,
+                duration: 0.5 
+              }}
+              className="text-4xl anton tracking-tight text-foreground hover:text-primary transition-colors"
             >
               {link.label}
             </motion.a>
           ))}
-          <a
+          <motion.a
             href={getMeeshoLink()}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-center gap-2 w-full text-center px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full mt-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: mobileMenuOpen ? 1 : 0, scale: mobileMenuOpen ? 1 : 0.9 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground font-bold rounded-full text-xl mt-6 shadow-xl"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingBag className="w-6 h-6" />
             Buy Now
-          </a>
+          </motion.a>
+        </div>
+
+        {/* Decorative background logo in menu */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-5 scale-150 pointer-events-none">
+          <img src={logo} alt="" className="w-64 grayscale hue-rotate-180" />
         </div>
       </motion.div>
     </>
