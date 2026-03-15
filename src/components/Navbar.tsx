@@ -177,6 +177,15 @@ const Navbar = () => {
           <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[100px]" />
         </div>
 
+        <div className="absolute top-5 right-6 z-[70]">
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="p-2 text-[#F0EAD6] hover:text-primary transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
+        </div>
+
         <div className="flex flex-col items-center gap-10 px-6 relative z-10 w-full">
           {navLinks.map((link, index) => (
             <motion.a

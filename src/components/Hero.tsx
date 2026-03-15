@@ -229,18 +229,18 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Sophisticated Layering) ── */}
-      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-6 md:gap-24" 
-           style={{ top: isMobile ? "36%" : "42%", transform: "translateY(-50%)" }}>
+      {/* ── Giant Background Text (Lagunitas-Inspired Impact) ── */}
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-12" 
+           style={{ top: isMobile ? "30%" : "42%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 20vw, 360px)",
+              fontSize: "clamp(65px, 24vw, 360px)",
               color: "#2A6040",
-              opacity: 0.35,
-              lineHeight: 0.8,
-              letterSpacing: "-0.02em",
+              opacity: isMobile ? 0.4 : 0.3,
+              lineHeight: 0.72,
+              letterSpacing: "-0.04em",
               whiteSpace: "nowrap",
             }}
           >
@@ -251,11 +251,11 @@ export default function Hero() {
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 20vw, 360px)",
-              color: "transparent",
-              WebkitTextStroke: "1.5px rgba(42, 96, 64, 0.4)",
-              lineHeight: 0.8,
-              letterSpacing: "0.05em",
+              fontSize: "clamp(65px, 24vw, 360px)",
+              color: "#2A6040",
+              opacity: isMobile ? 0.4 : 0.3,
+              lineHeight: 0.72,
+              letterSpacing: "-0.04em",
               whiteSpace: "nowrap",
             }}
           >
@@ -264,9 +264,9 @@ export default function Hero() {
         </div>
       </h1>
 
-      {/* ── Main Hero Bottle (True Optical Mobile Centering) ── */}
+      {/* ── Main Hero Bottle (High-Position Centering) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "40%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "33%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
@@ -282,21 +282,26 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Bottom Left Title (Balanced Spacing) ── */}
+      {/* ── Centered Label to Avoid Overlap ── */}
       <div 
-        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none left-5 bottom-[220px] sm:bottom-[240px] md:bottom-56 lg:bottom-[12%] md:left-[8vw]"
+        className="hero-ui accelerate absolute z-30 flex flex-col pointer-events-none w-full items-center md:items-start px-5"
+        style={{ 
+          top: isMobile ? "56%" : "auto", 
+          bottom: isMobile ? "auto" : "12%",
+          left: isMobile ? "0" : "8vw"
+        }}
       >
         <div
-          className="dm-serif italic mb-2 opacity-95"
-          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2vw, 24px)" }}
+          className="dm-serif italic mb-1 md:mb-2 opacity-95 text-center md:text-left"
+          style={{ color: "#F0EAD6", fontSize: "clamp(13px, 2vw, 24px)" }}
         >
           Premium Natural Care
         </div>
-        <div className="flex flex-col gap-1 md:gap-2">
+        <div className="flex flex-col gap-0 items-center md:items-start">
           <span
-            className="anton uppercase leading-none"
+            className="anton uppercase leading-[0.8]"
             style={{
-              fontSize: "clamp(32px, 8vw, 120px)",
+              fontSize: "clamp(24px, 7vw, 120px)",
               color: "#F0EAD6",
               letterSpacing: "0.01em",
             }}
@@ -304,9 +309,9 @@ export default function Hero() {
             SHOE
           </span>
           <span
-            className="anton uppercase leading-none"
+            className="anton uppercase leading-[0.8]"
             style={{
-              fontSize: "clamp(32px, 8vw, 120px)",
+              fontSize: "clamp(24px, 7vw, 120px)",
               color: "#F0EAD6",
               display: "block",
               letterSpacing: "0.01em",
