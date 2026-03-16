@@ -103,12 +103,12 @@ export default function Hero() {
         scrollTl.to(bottle, { y: speed, rotate: "+=40", opacity: 0, ease: "none" }, 0);
       });
 
-      // Smooth Infinite Float for Main Bottle (Floating UP to stay clear of bottom UI)
+      // Smooth Infinite Float for Main Bottle (Very subtle range to maintain center)
       gsap.to(".main-bottle-container", {
-        y: isMobile ? -14 : -30,
+        y: isMobile ? -5 : -12,
         yoyo: true,
         repeat: -1,
-        duration: 3.5,
+        duration: 4,
         ease: "sine.inOut"
       });
 
