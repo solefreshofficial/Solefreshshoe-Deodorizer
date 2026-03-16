@@ -64,8 +64,8 @@ export default function Hero() {
   useGSAP(() => {
     const ctx = gsap.context(() => {
       // Set initial states explicitly for flawless entry
-      gsap.set(".hero-text-line", { y: isMobile ? 80 : 150, opacity: 0 });
-      gsap.set(".main-bottle-container", { y: "40%", opacity: 0, scale: 0.85, rotate: -10 });
+      gsap.set(".hero-text-line", { y: isMobile ? 50 : 150, opacity: 0 });
+      gsap.set(".main-bottle-container", { y: isMobile ? 50 : 100, opacity: 0, scale: 0.85, rotate: -10 });
       gsap.set(".hero-ui", { y: 30, opacity: 0 });
       gsap.set(".bg-bottle", { opacity: 0, scale: 0 });
       gsap.set(".bg-overlay", { opacity: 0 });
@@ -103,12 +103,12 @@ export default function Hero() {
         scrollTl.to(bottle, { y: speed, rotate: "+=40", opacity: 0, ease: "none" }, 0);
       });
 
-      // Smooth Infinite Float for Main Bottle
+      // Smooth Infinite Float for Main Bottle (Synchronized around center)
       gsap.to(".main-bottle-container", {
-        y: isMobile ? "-=15" : "-=30",
+        y: isMobile ? 12 : 25,
         yoyo: true,
         repeat: -1,
-        duration: 4,
+        duration: 3.5,
         ease: "sine.inOut"
       });
 
@@ -231,7 +231,7 @@ export default function Hero() {
 
       {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
-           style={{ top: isMobile ? "35%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -266,7 +266,7 @@ export default function Hero() {
 
       {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "35%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
