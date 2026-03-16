@@ -231,7 +231,7 @@ export default function Hero() {
 
       {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
-           style={{ top: isMobile ? "38%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "35%" : "45%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -264,9 +264,9 @@ export default function Hero() {
         </div>
       </h1>
 
-      {/* ── Main Hero Bottle (Centered & Scaled Up for Mobile) ── */}
+      {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "38%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: isMobile ? "35%" : "45%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
@@ -302,7 +302,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-[1.05] tracking-normal"
             style={{
-              fontSize: "clamp(38px, 11vw, 100px)",
+              fontSize: "clamp(32px, 8.5vw, 100px)",
               color: "#F0EAD6",
               textShadow: "0 8px 24px rgba(0,0,0,0.6)"
             }}
@@ -312,7 +312,7 @@ export default function Hero() {
           <span
             className="anton uppercase leading-[1.05] tracking-normal"
             style={{
-              fontSize: "clamp(38px, 11vw, 100px)",
+              fontSize: "clamp(32px, 8.5vw, 100px)",
               color: "#F0EAD6",
               display: "block",
               textShadow: "0 8px 24px rgba(0,0,0,0.6)"
