@@ -103,12 +103,12 @@ export default function Hero() {
         scrollTl.to(bottle, { y: speed, rotate: "+=40", opacity: 0, ease: "none" }, 0);
       });
 
-      // Smooth Infinite Float for Main Bottle (Very subtle range to maintain center)
+      // Smooth Infinite Float for Main Bottle (Extremely subtle — barely perceptible)
       gsap.to(".main-bottle-container", {
-        y: isMobile ? -5 : -12,
+        y: isMobile ? -2 : -4,
         yoyo: true,
         repeat: -1,
-        duration: 4,
+        duration: 5,
         ease: "sine.inOut"
       });
 
@@ -184,9 +184,9 @@ export default function Hero() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap');
         .anton { font-family: 'Anton', sans-serif; }
-        .dm-serif { font-family: 'DM Serif Display', serif; }
+        .hero-tagline { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.08em; }
         .accelerate { will-change: transform, opacity; }
       `}</style>
 
@@ -231,7 +231,7 @@ export default function Hero() {
 
       {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
-           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: "50%", transform: "translateY(-50%)" }}>
         <div className="overflow-hidden">
           <span
             className="hero-text-line accelerate anton uppercase block text-center"
@@ -266,7 +266,7 @@ export default function Hero() {
 
       {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
-           style={{ top: isMobile ? "48%" : "45%", transform: "translateY(-50%)" }}>
+           style={{ top: "50%", transform: "translateY(-50%)" }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
           <img
             src={imagePath}
@@ -293,8 +293,8 @@ export default function Hero() {
         }}
       >
         <div
-          className="dm-serif italic mb-2 md:mb-2 text-left opacity-90"
-          style={{ color: "#F0EAD6", fontSize: "clamp(16px, 2.5vw, 24px)" }}
+          className="hero-tagline mb-2 md:mb-2 text-left opacity-80"
+          style={{ color: "#A8D5B5", fontSize: "clamp(12px, 1.4vw, 16px)", textTransform: "uppercase" }}
         >
           Premium Natural Care
         </div>
