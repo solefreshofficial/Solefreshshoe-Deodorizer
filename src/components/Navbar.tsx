@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { ShoppingBag, X } from "lucide-react";
+import { ShoppingBag, X, Menu } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { scrollToIdWithOffset, getMeeshoLink } from "@/lib/utils";
 import logo from "@/assets/solefresh-logo.png";
@@ -147,33 +147,35 @@ const Navbar = () => {
                   </StarButton>
                 </motion.a>
 
-                {/* Mobile hamburger — custom animated */}
+                {/* Mobile hamburger — exact pixel alignment using Lucide */}
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-[5px] group"
+                  className="md:hidden relative w-10 h-10 flex items-center justify-center text-[#F0EAD6] outline-none"
                   aria-label="Toggle menu"
                 >
-                  <motion.span
-                    animate={mobileMenuOpen
-                      ? { rotate: 45, y: 7 }
-                      : { rotate: 0, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="block w-5 h-[1.5px] bg-[#F0EAD6] rounded-full origin-center"
-                  />
-                  <motion.span
-                    animate={mobileMenuOpen
-                      ? { opacity: 0, scaleX: 0 }
-                      : { opacity: 1, scaleX: 1 }}
-                    transition={{ duration: 0.2 }}
-                    className="block w-5 h-[1.5px] bg-[#F0EAD6] rounded-full"
-                  />
-                  <motion.span
-                    animate={mobileMenuOpen
-                      ? { rotate: -45, y: -7 }
-                      : { rotate: 0, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="block w-5 h-[1.5px] bg-[#F0EAD6] rounded-full origin-center"
-                  />
+                  <AnimatePresence mode="wait">
+                    {mobileMenuOpen ? (
+                      <motion.div
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <X className="w-6 h-6" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Menu className="w-6 h-6" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </button>
               </div>
             </div>
