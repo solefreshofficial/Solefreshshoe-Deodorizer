@@ -4,6 +4,7 @@ import { ShoppingBag, X } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { scrollToIdWithOffset, getMeeshoLink } from "@/lib/utils";
 import logo from "@/assets/solefresh-logo.png";
+import { StarButton } from "@/components/ui/star-button";
 
 const navLinks = [
   { href: "science", label: "How It Works" },
@@ -138,15 +139,12 @@ const Navbar = () => {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="hidden md:flex items-center gap-2 text-[13px] font-semibold tracking-wide px-5 py-2 rounded-full transition-all duration-300"
-                  style={{
-                    background: "linear-gradient(135deg, #4CAF6F 0%, #2d8a4e 100%)",
-                    color: "#fff",
-                    boxShadow: "0 4px 16px rgba(76,175,111,0.35)",
-                  }}
+                  className="hidden md:block"
                 >
-                  <ShoppingBag className="w-3.5 h-3.5" />
-                  Buy Now
+                  <StarButton lightColor="#4CAF6F" backgroundColor="#050D08" className="h-9 px-5 text-[13px] font-semibold border-white/20">
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    Buy Now
+                  </StarButton>
                 </motion.a>
 
                 {/* Mobile hamburger — custom animated */}
@@ -239,14 +237,16 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.42 }}
-                className="flex items-center justify-center gap-3 mt-10 py-4 rounded-2xl font-bold text-lg text-white active:scale-95 transition-transform"
-                style={{
-                  background: "linear-gradient(135deg, #4CAF6F 0%, #2d8a4e 100%)",
-                  boxShadow: "0 8px 32px rgba(76,175,111,0.35)",
-                }}
+                className="mt-10"
               >
-                <ShoppingBag className="w-5 h-5" />
-                Buy Now on Meesho
+                <StarButton 
+                  className="w-full h-[52px] text-lg font-bold shadow-[0_8px_32px_rgba(76,175,111,0.25)] border-[#4CAF6F]/30" 
+                  lightColor="#4CAF6F" 
+                  backgroundColor="#050D08"
+                >
+                  <ShoppingBag className="w-5 h-5" />
+                  Buy Now on Meesho
+                </StarButton>
               </motion.a>
             </div>
 

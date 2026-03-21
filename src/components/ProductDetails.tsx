@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Package, Calendar, MapPin, ArrowRight, Sparkles, Shield, Instagram } from "lucide-react";
 import { getMeeshoLink } from "@/lib/utils";
 import { useTouchDevice } from "@/hooks/use-touch-device";
+import { StarButton } from "@/components/ui/star-button";
 
 const ProductDetails = () => {
   const ref = useRef(null);
@@ -177,13 +178,17 @@ const ProductDetails = () => {
                 href={getMeeshoLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 bg-primary text-primary-foreground font-bold rounded-full overflow-hidden relative group transform-gpu transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/30 active:scale-95"
+                className="w-full sm:w-auto block group transition-transform duration-300 hover:scale-[1.03] active:scale-95"
               >
-                {/* Animated background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-green-400 to-primary bg-[length:200%_100%] animate-gradient" />
-                
-                <span className="relative z-10 text-base md:text-lg">Buy Now</span>
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                <StarButton 
+                  className="w-full h-14 md:h-16 text-base md:text-lg font-bold rounded-full overflow-visible border-[#4CAF6F]/40 shadow-[0_10px_30px_rgba(76,175,111,0.2)]" 
+                  lightColor="#A8D5B5" 
+                  backgroundColor="#0a2416"
+                  duration={4}
+                >
+                  Buy Now
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1.5 transition-transform duration-300" />
+                </StarButton>
               </a>
               
               <div className="flex items-center justify-center sm:justify-start gap-2 px-4">

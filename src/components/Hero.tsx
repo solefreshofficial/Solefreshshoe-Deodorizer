@@ -229,7 +229,7 @@ export default function Hero() {
       {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
            style={{ 
-             top: isMobile ? "calc(50% + 32px)" : "50%", 
+             top: isMobile ? "42%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="overflow-hidden">
@@ -267,7 +267,7 @@ export default function Hero() {
       {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
            style={{ 
-             top: isMobile ? "calc(50% + 32px)" : "50%", 
+             top: isMobile ? "42%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
