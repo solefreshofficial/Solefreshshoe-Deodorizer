@@ -70,19 +70,19 @@ export default function Hero() {
       gsap.set(".bg-bottle", { opacity: 0, scale: 0 });
       gsap.set(".bg-overlay", { opacity: 0 });
 
-      // Cinematic load-in Timeline
+      // Cinematic load-in Timeline (Fast & Dynamic)
       const tl = gsap.timeline();
-      tl.to(".bg-overlay", { opacity: 0.15, duration: 2, ease: "power2.inOut" })
-        .to(".hero-text-line", { y: 0, opacity: 0.45, duration: 1.5, stagger: 0.2, ease: "power4.out" }, "-=1.5")
-        .to(".main-bottle-container", { y: "0%", opacity: 1, scale: 1, rotate: -3, duration: 1.8, ease: "power4.out" }, "-=1.2")
+      tl.to(".bg-overlay", { opacity: 0.15, duration: 1, ease: "power2.inOut" })
+        .to(".hero-text-line", { y: 0, opacity: 0.45, duration: 0.8, stagger: 0.1, ease: "power4.out" }, "-=0.8")
+        .to(".main-bottle-container", { y: "0%", opacity: 1, scale: 1, rotate: -3, duration: 1, ease: "power4.out" }, "-=0.6")
         .to(".bg-bottle", { 
           opacity: (i, target) => parseFloat(target.getAttribute("data-opacity") || "0.2"), 
           scale: (i, target) => parseFloat(target.getAttribute("data-scale") || "1"), 
-          duration: 2, 
-          stagger: 0.02, 
+          duration: 1.2, 
+          stagger: 0.01, 
           ease: "back.out(1.2)" 
-        }, "-=1.5")
-        .to(".hero-ui", { y: 0, opacity: 1, duration: 1.2, stagger: 0.1, ease: "power3.out" }, "-=1.2");
+        }, "-=0.8")
+        .to(".hero-ui", { y: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "power3.out" }, "-=0.8");
 
       // Scroll Parallax Timeline
       const scrollTl = gsap.timeline({
@@ -182,6 +182,10 @@ export default function Hero() {
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap');
+        @font-face {
+          font-family: 'Highrise';
+          src: url('/fonts/highrise (1)/HighriseFont-Bold-Demo.otf') format('opentype');
+        }
         .anton { font-family: 'Anton', sans-serif; }
         .hero-tagline { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.08em; }
         .accelerate { will-change: transform, opacity; }
@@ -226,24 +230,24 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
-      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-6" 
+      {/* ── Giant Background Text (Highrise Poster Variant) ── */}
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-4" 
            style={{ 
-             top: isMobile ? "42%" : "47%", 
+             top: isMobile ? "40%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="overflow-hidden pt-2 pb-4 md:pb-8 -my-2 md:-my-4">
           <span
             className="hero-text-line accelerate uppercase block text-center"
             style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(48px, 15vw, 260px)",
+              fontFamily: "'Highrise', sans-serif",
+              fontSize: "clamp(130px, 35vw, 420px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.2 : 0.25,
-              lineHeight: 1,
-              letterSpacing: "-0.04em",
+              opacity: isMobile ? 0.35 : 0.4,
+              lineHeight: 0.85,
               whiteSpace: "nowrap",
+              transform: "scale(1, 1.2)", 
+              transformOrigin: "center"
             }}
           >
             FRESH SHOES
@@ -253,14 +257,14 @@ export default function Hero() {
           <span
             className="hero-text-line accelerate uppercase block text-center"
             style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 900,
-              fontSize: "clamp(48px, 15vw, 260px)",
+              fontFamily: "'Highrise', sans-serif",
+              fontSize: "clamp(130px, 35vw, 420px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.2 : 0.25,
-              lineHeight: 1,
-              letterSpacing: "-0.04em",
+              opacity: isMobile ? 0.35 : 0.4,
+              lineHeight: 0.85,
               whiteSpace: "nowrap",
+              transform: "scale(1, 1.2)",
+              transformOrigin: "center"
             }}
           >
             EVERY DAY
@@ -271,7 +275,7 @@ export default function Hero() {
       {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
            style={{ 
-             top: isMobile ? "42%" : "47%", 
+             top: isMobile ? "40%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
@@ -280,12 +284,12 @@ export default function Hero() {
             alt="SoleFresh Natural Shoe Deodorizer"
             style={{
               width: "clamp(350px, 72vw, 850px)",
-              filter: "drop-shadow(0 50px 100px rgba(0,0,0,0.85)) saturate(1.15) contrast(1.1) brightness(1.08)",
+              filter: "drop-shadow(0 60px 80px rgba(0,0,0,0.9)) saturate(1.25) contrast(1.2) brightness(1.15)",
               transform: "rotate(-3deg)",
             }}
           />
-          {/* Intense Cinematic Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-[#4CAF6F]/25 blur-[100px] rounded-full -z-10 animate-pulse" />
+          {/* Intense Cinematic Glow matching the poster */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#b5ffc8]/50 blur-[90px] rounded-full -z-10 animate-pulse" />
         </div>
       </div>
 
