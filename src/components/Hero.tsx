@@ -64,25 +64,44 @@ export default function Hero() {
   useGSAP(() => {
     const ctx = gsap.context(() => {
       // Set initial states explicitly for flawless entry
-      gsap.set(".hero-text-line", { y: isMobile ? 50 : 150, opacity: 0 });
-      gsap.set(".main-bottle-container", { y: isMobile ? 50 : 100, opacity: 0, scale: 0.85, rotate: -10 });
+      gsap.set(".hero-text-line", { y: isMobile ? 80 : 150, opacity: 0 });
+      gsap.set(".main-bottle-container", { 
+        y: isMobile ? 60 : 100, 
+        opacity: 0, 
+        scale: isMobile ? 0.35 : 0.85, 
+        rotate: isMobile ? -25 : -10 
+      });
       gsap.set(".hero-ui", { y: 30, opacity: 0 });
       gsap.set(".bg-bottle", { opacity: 0, scale: 0 });
       gsap.set(".bg-overlay", { opacity: 0 });
 
-      // Cinematic load-in Timeline (Fast & Dynamic)
+      // Cinematic load-in Timeline (Fast & Explosive on Mobile)
       const tl = gsap.timeline();
       tl.to(".bg-overlay", { opacity: 0.15, duration: 1, ease: "power2.inOut" })
-        .to(".hero-text-line", { y: 0, opacity: 0.45, duration: 0.8, stagger: 0.1, ease: "power4.out" }, "-=0.8")
-        .to(".main-bottle-container", { y: "0%", opacity: 1, scale: 1, rotate: -3, duration: 1, ease: "power4.out" }, "-=0.6")
+        .to(".hero-text-line", { 
+          y: 0, opacity: 0.45, 
+          duration: isMobile ? 0.5 : 0.8, 
+          stagger: isMobile ? 0.05 : 0.1, 
+          ease: isMobile ? "back.out(1.5)" : "power4.out" 
+        }, "-=0.8")
+        .to(".main-bottle-container", { 
+          y: "0%", opacity: 1, scale: 1, rotate: -3, 
+          duration: isMobile ? 0.7 : 1, 
+          ease: isMobile ? "back.out(2.2)" : "power4.out" 
+        }, isMobile ? "-=0.7" : "-=0.6")
         .to(".bg-bottle", { 
           opacity: (i, target) => parseFloat(target.getAttribute("data-opacity") || "0.2"), 
           scale: (i, target) => parseFloat(target.getAttribute("data-scale") || "1"), 
-          duration: 1.2, 
+          duration: isMobile ? 0.8 : 1.2, 
           stagger: 0.01, 
           ease: "back.out(1.2)" 
-        }, "-=0.8")
-        .to(".hero-ui", { y: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "power3.out" }, "-=0.8");
+        }, isMobile ? "-=0.6" : "-=0.8")
+        .to(".hero-ui", { 
+          y: 0, opacity: 1, 
+          duration: isMobile ? 0.5 : 0.8, 
+          stagger: 0.05, 
+          ease: "power3.out" 
+        }, isMobile ? "-=0.6" : "-=0.8");
 
       // Scroll Parallax Timeline
       const scrollTl = gsap.timeline({
@@ -241,12 +260,12 @@ export default function Hero() {
             className="hero-text-line accelerate uppercase block text-center"
             style={{
               fontFamily: "'Highrise', sans-serif",
-              fontSize: "clamp(130px, 35vw, 420px)",
+              fontSize: "clamp(80px, 24vw, 420px)",
               color: "#2A6040",
               opacity: isMobile ? 0.35 : 0.4,
               lineHeight: 0.85,
               whiteSpace: "nowrap",
-              transform: "scale(1, 1.2)", 
+              transform: isMobile ? "scale(1, 1.5)" : "scale(1, 1.2)", 
               transformOrigin: "center"
             }}
           >
@@ -258,12 +277,12 @@ export default function Hero() {
             className="hero-text-line accelerate uppercase block text-center"
             style={{
               fontFamily: "'Highrise', sans-serif",
-              fontSize: "clamp(130px, 35vw, 420px)",
+              fontSize: "clamp(80px, 24vw, 420px)",
               color: "#2A6040",
               opacity: isMobile ? 0.35 : 0.4,
               lineHeight: 0.85,
               whiteSpace: "nowrap",
-              transform: "scale(1, 1.2)",
+              transform: isMobile ? "scale(1, 1.5)" : "scale(1, 1.2)",
               transformOrigin: "center"
             }}
           >
