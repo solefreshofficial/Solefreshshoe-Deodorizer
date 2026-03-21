@@ -227,35 +227,39 @@ export default function Hero() {
       </div>
 
       {/* ── Giant Background Text (Awwwards Solid Variant) ── */}
-      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-4 md:gap-12" 
+      <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-6" 
            style={{ 
              top: isMobile ? "42%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden pt-2 pb-4 md:pb-8 -my-2 md:-my-4">
           <span
-            className="hero-text-line accelerate anton uppercase block text-center"
+            className="hero-text-line accelerate uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 20vw, 360px)",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 900,
+              fontSize: "clamp(48px, 15vw, 260px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.25 : 0.3,
-              lineHeight: 0.8,
-              letterSpacing: "-0.01em",
+              opacity: isMobile ? 0.2 : 0.25,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
               whiteSpace: "nowrap",
             }}
           >
             FRESH SHOES
           </span>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden pt-2 pb-4 md:pb-8 -my-2 md:-my-4">
           <span
-            className="hero-text-line accelerate anton uppercase block text-center"
+            className="hero-text-line accelerate uppercase block text-center"
             style={{
-              fontSize: "clamp(60px, 20vw, 360px)",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 900,
+              fontSize: "clamp(48px, 15vw, 260px)",
               color: "#2A6040",
-              opacity: isMobile ? 0.25 : 0.3,
-              lineHeight: 0.8,
-              letterSpacing: "-0.01em",
+              opacity: isMobile ? 0.2 : 0.25,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
               whiteSpace: "nowrap",
             }}
           >
