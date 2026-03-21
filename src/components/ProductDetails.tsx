@@ -181,7 +181,7 @@ const ProductDetails = () => {
                 className="w-full sm:w-auto block group transition-transform duration-300 hover:scale-[1.03] active:scale-95"
               >
                 <StarButton 
-                  className="w-full h-14 md:h-16 text-base md:text-lg font-bold rounded-full overflow-visible border-[#4CAF6F]/40 shadow-[0_10px_30px_rgba(76,175,111,0.2)]" 
+                  className="w-full h-14 md:h-16 text-base md:text-lg font-bold rounded-full border-[#4CAF6F]/40 shadow-[0_10px_30px_rgba(76,175,111,0.2)]" 
                   lightColor="#A8D5B5" 
                   backgroundColor="#0a2416"
                   duration={4}
