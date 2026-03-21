@@ -184,7 +184,7 @@ export default function Hero() {
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap');
         @font-face {
           font-family: 'Highrise';
-          src: url('/fonts/highrise (1)/HighriseFont-Bold-Demo.otf') format('opentype');
+          src: url('${import.meta.env.BASE_URL}fonts/highrise%20(1)/HighriseFont-Bold-Demo.otf') format('opentype');
         }
         .anton { font-family: 'Anton', sans-serif; }
         .hero-tagline { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.08em; }
@@ -233,7 +233,7 @@ export default function Hero() {
       {/* ── Giant Background Text (Highrise Poster Variant) ── */}
       <h1 className="absolute inset-x-0 w-full flex flex-col items-center justify-center z-10 pointer-events-none select-none px-4 gap-2 md:gap-4" 
            style={{ 
-             top: isMobile ? "40%" : "47%", 
+             top: isMobile ? "44%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="overflow-hidden pt-2 pb-4 md:pb-8 -my-2 md:-my-4">
@@ -275,7 +275,7 @@ export default function Hero() {
       {/* ── Main Hero Bottle (Centered & Overlapping Text) ── */}
       <div className="main-bottle-wrapper absolute z-20 pointer-events-none flex items-center justify-center w-full"
            style={{ 
-             top: isMobile ? "40%" : "47%", 
+             top: isMobile ? "44%" : "47%", 
              transform: "translateY(-50%)" 
            }}>
         <div className="main-bottle-container relative w-fit h-fit accelerate">
